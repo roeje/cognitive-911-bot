@@ -1,2 +1,2 @@
 # cognitive-911-bot
-GVSU CIS capstone project for Motorola cognitive 911 call-taking bot
+Winter 2017 GVSU CIS Capstone project for Motorola cognitive 911 call-taking bot
