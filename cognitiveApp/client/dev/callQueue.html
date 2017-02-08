@@ -9,7 +9,7 @@
 	<script>
 		var app = angular.module("callerList", []);
 		
-		app.controller("callers", function($scope) {
+		app.controller("callers", function($scope, $window) {
 			$scope.callerList = [
         {callerId:0, callStartTime:'15:37', callElapsedTime: '3 minutes', phoneNum:'616-555-5134 ', callerName:'Jane Doe', 
 					emergencyType:'Heart Attack', location:'111 Oak Street'},
@@ -20,12 +20,16 @@
 				{callerId:2, callStartTime:'15:32', callElapsedTime: '8 minutes', phoneNum:'616-772-6418 ', callerName:'John Smith', 
 					emergencyType:'Fire', location:'111 Oak Street'},
 					
-				{callerId:3, callStartTime:'15:29', callElapsedTime: '11 minutes', phoneNum:'Jani', callerName:'Norway', 
+				{callerId:3, callStartTime:'15:29', callElapsedTime: '11 minutes', phoneNum:'Jani', callerName:'Norman Easterling', 
 					emergencyType:'Car Accident', location:'111 Oak Street'},
 					
 				{callerId:4, callStartTime:'15:39', callElapsedTime: '1 minute', phoneNum:'Unknown', callerName:'Unknown', 
 					emergencyType:'Unknown', location:'Unknown'}
 			];
+			
+			$scope.openDetails = function (callerId) {
+				// TODO: redirect to call details or open call details in new tab/window
+			}
 		});
 	</script>
 	<style>
@@ -38,24 +42,6 @@
 		#header {
 			margin-bottom:2em;
 		}
-		.bg-blue {
-			background-color: #2BA0E7;
-		}
-		.bg-white {
-			background-color: white;
-		}
-		.bg-navy {
-			background-color:#213F59;
-			border-color: #213F59;
-		}
-		.txt-white {
-			color: white;
-		}
-		
-		txt-1em {
-			font-size:1em;
-		}
-		
 	</style>
 </head>
 <body class="container-fluid col-xs-10 col-xs-offset-1">
@@ -66,7 +52,7 @@
 	</div>
 	
 	<div data-ng-app="callerList" data-ng-controller="callers">
-		<div class="panel panel-default" ng-repeat="caller in callerList">
+		<div class="panel panel-default" data-ng-repeat="caller in callerList" data-ng-click="openDetails( caller.callerId )">
 			<div class="panel-heading">
 				Emergency Type: {{caller.emergencyType}}
 			</div>
@@ -80,7 +66,7 @@
 				<li class="list-group-item">
 					<div class="row">
 						<span class="col-xs-6">Location: {{caller.location}}</span>
-						<span class="col-xs-6">Some other stuff?</span>
+						<span class="col-xs-6">TBD</span>
 					</div>
 				</li>
 				<li class="list-group-item">
@@ -89,10 +75,9 @@
 						<span class="col-xs-6">Call Start Time: {{caller.callStartTime}}</span>
 					</div>
 				</li>
-				<li class="list-group-item"><a href="#">Details</a></li>
 			</ul>
 		</div>
 	</div>
-	
+
 </body>
 </html>
