@@ -1,0 +1,46 @@
+
+	<style>
+		body {
+			background-color: #1D1C19;
+			padding-top:2em;
+			padding-bottom:2em;
+		}
+
+		#header {
+			margin-bottom:20px;
+		}
+	</style>
+
+	<div id="header" class="panel panel-primary">
+		<div class="panel-heading">
+			<h1 class="text-center">911 Caller Queue</h1>
+		</div>
+	</div>
+
+	<div>
+		<div class="panel panel-default" data-ng-repeat="caller in callerList" data-ng-click="openDetails( caller.callerId )">
+			<div class="panel-heading">
+				Emergency Type: {{caller.emergencyType}}
+			</div>
+			<ul class="list-group">
+				<li class="list-group-item">
+					<div class="row">
+						<span class="col-xs-6">Phone Number: {{caller.phoneNum}}</span>
+						<span class="col-xs-6">Caller Name: {{caller.callerName}}</span>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<div class="row">
+						<span class="col-xs-6">Location: {{caller.location}}</span>
+						<span class="col-xs-6">TBD</span>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<div class="row">
+						<span class="col-xs-6">Call Elapsed Time: {{caller.callElapsedTime}}</span>
+						<span class="col-xs-6">Call Start Time: {{caller.callStartTime}}</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
