@@ -1,9 +1,5 @@
 ;(function(ng) {
   'use strict';
 
-  ng.module('cognitiveApp', [
-      'ngResource',
-      'ngRoute',
-      'ngMessages'
-    ]);
+  ng.module('cognitiveApp', ['ngResource', 'ngRoute', 'ngMessages', 'underscore']);
 }(window.angular));

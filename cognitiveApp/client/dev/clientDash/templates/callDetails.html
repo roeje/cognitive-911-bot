@@ -1,0 +1,37 @@
+
+
+<style>
+	body {
+		background-color: #1D1C19;
+		padding-top:2em;
+		padding-bottom:2em;
+	}
+
+	#header {
+		margin-bottom:20px;
+	}
+</style>
+	<div id="header" class="panel panel-primary">
+		<div class="panel-heading">
+			<h1 class="text-center">Call Details</h1>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<a href="#">View Chat Transcript</a>
+		</div>
+	</div>
+	<div>
+		<div class="panel panel-default" data-ng-repeat="detail in detailsList">
+			<div class="panel-heading">
+				{{ detail.detailLabel }}
+			</div>
+			<ul class="list-group">
+				<li class="list-group-item">
+					<div class="row">
+						<span class="col-xs-6">{{ detail.detailContent }}</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
