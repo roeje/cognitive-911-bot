@@ -19,6 +19,11 @@
            controller: 'QueueController',
            controllerAs: 'queueCtrl'
          })
+         .when('/chat', {
+           templateUrl: 'clientDash/templates/chatBot.html',
+           controller: 'ChatController',
+           controllerAs: 'chatCtrl'
+         })
          .otherwise({
             redirectTo: '/'
          });

@@ -1,13 +1,19 @@
 <div class="container">
-
   <div class="app-panel transition">
+
+      <ng-include src="'clientDash/templates/navbar.html'"></ng-include>
+
       <div class="jumbotron">
          <h1>Cognitive 911 Chat-bot</h1>
 
-         <p><a class="btn btn-primary btn-lg" href="/queue" role="button">Go to Caller Queue</a></p>
-         <p><a class="btn btn-primary btn-lg" href="/detail" role="button">Go to Call Detail Page</a></p>
-      </div>
+         <p>...</p>
+         <div class="btn-group" role="group">
+            <p class="btn-group"><a class="btn btn-primary btn-lg" href="/queue" role="button">Go to Caller Queue</a></p>
+            <p class="btn-group"><a class="btn btn-primary btn-lg" href="/detail" role="button">Go to Details Page</a></p>
+            <p class="btn-group"><a class="btn btn-primary btn-lg" href="/chat" role="button">Go to Chat-Bot Page</a></p>
+         </div>
 
+      </div>
 
   </div>
 </div>
