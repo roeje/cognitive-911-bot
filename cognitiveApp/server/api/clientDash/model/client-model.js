@@ -2,9 +2,11 @@
 
 const mongoose = require('mongoose');
 
-const _todoSchema = {
-    todoMessage: {type: String, required: true, trim: true},
-    createdAt: {type: Date, default: Date.now}
+const _callSchema = {
+   transcript: {type: String, required: true, trim: true},
+   createdAt: {type: Date, default: Date.now},
+   callerFirstName: {type: String, required: true, trim: true},
+   callerLastName: {type: String, required: true, trim: true}
 }
 
-module.exports = mongoose.Schema(_todoSchema);
+module.exports = mongoose.Schema(_callSchema);

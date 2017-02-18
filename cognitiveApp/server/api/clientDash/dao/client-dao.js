@@ -2,42 +2,42 @@
 
 const mongoose = require('mongoose');
 const Promise = require('bluebird');
-const todoSchema = require('../model/client-model');
+const callSchema = require('../model/client-model');
 const _ = require('lodash');
 
-todoSchema.statics.getAll = () => {
+callSchema.statics.getAllCalls = () => {
     return new Promise((resolve, reject) => {
         let _query = {};
 
-        Todo
+        Call
           .find(_query)
-          .exec((err, todos) => {
+          .exec((err, calls) => {
               err ? reject(err)
-                  : resolve(todos);
+                  : resolve(calls);
           });
       });
 }
 
-todoSchema.statics.createTodo = (todo) => {
+callSchema.statics.createCall = (call) => {
     return new Promise((resolve, reject) => {
-      if (!_.isObject(todo))
-          return reject(new TypeError('Todo is not a valid object.'));
+      if (!_.isObject(call))
+          return reject(new TypeError('Call is not a valid object.'));
 
-      let _todo = new Todo(todo);
+      let _call = new Call(call);
 
-      _todo.save((err, saved) => {
+      _call.save((err, saved) => {
         err ? reject(err)
             : resolve(saved);
       });
     });
 }
 
-todoSchema.statics.deleteTodo = (id) => {
+callSchema.statics.deleteCall = (id) => {
     return new Promise((resolve, reject) => {
         if (!_.isString(id))
             return reject(new TypeError('Id is not a valid string.'));
 
-        Todo
+        Call
           .findByIdAndRemove(id)
           .exec((err, deleted) => {
               err ? reject(err)
@@ -46,6 +46,6 @@ todoSchema.statics.deleteTodo = (id) => {
     });
 }
 
-const Todo  = mongoose.model('Todo', todoSchema);
+const Call  = mongoose.model('Call', callSchema);
 
-module.exports = Todo;
+module.exports = Call;
