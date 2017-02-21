@@ -17,9 +17,7 @@ module.exports = class ClientRoutes {
 
       router
          .route('/api/send-message/:message/:id')
-         .post()
-
-
+         .post(ClientController.sendMessage);
 
     }
 

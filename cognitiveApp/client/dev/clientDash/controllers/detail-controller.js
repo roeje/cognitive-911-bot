@@ -10,7 +10,9 @@
                {detailType:"emergencyType", detailLabel:"Emergency Type", detailContent:"Heart Attack"},
                {detailType:"location", detailLabel:"Emergency Location", detailContent:"111 Oak Street, Grand Rapids, MI"},
                {detailType:"numInjuries", detailLabel:"Number Of Injuries", detailContent:"Zero"},
-         ];
+            ];
+
+
       	// var moment = $window.moment;
       	// var updatedServiceList = [];
          //

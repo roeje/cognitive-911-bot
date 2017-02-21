@@ -1,6 +1,6 @@
 "use strict";
 
-const ClientRoutes = require('../api/todo/routes/client-routes');
+const ClientRoutes = require('../api/clientDash/routes/client-routes');
 
 const StaticDispatcher = require('../commons/static/index');
 
