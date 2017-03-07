@@ -5,6 +5,7 @@
       .controller('DetailController', function($scope, $rootScope, MainService, $http, $window, _) {
 
          $scope.testString = "Hello World";
+         $scope.callDetalTestString;
          $scope.detailsList = [
           {detailType:"phoneNum", detailLabel:"Phone Number", detailContent:"616-555-5134"},
                {detailType:"emergencyType", detailLabel:"Emergency Type", detailContent:"Heart Attack"},
@@ -12,7 +13,13 @@
                {detailType:"numInjuries", detailLabel:"Number Of Injuries", detailContent:"Zero"},
             ];
 
-
+         MainService.getCallDetails().then(function(data) {
+            console.log(data);
+            $scope.callDetalTestString = data;
+         }, function(data) {
+            console.log("No data loaded for class details");
+            $scope.callDetalTestString = "None";
+         });
       	// var moment = $window.moment;
       	// var updatedServiceList = [];
          //

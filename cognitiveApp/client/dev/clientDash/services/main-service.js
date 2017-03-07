@@ -18,7 +18,15 @@
    					deferred.resolve(data);
    				});
    				return deferred.promise;
-   			}
+   			},
+
+            getCallDetails : function() {
+               var deferred = $q.defer();
+               $http.get(getBaseUrl() + '/api/call-details/1').success(function(data) {
+                  deferred.resolve(data);
+               });
+               return deferred.promise;
+            }
    		}
    	});
 
