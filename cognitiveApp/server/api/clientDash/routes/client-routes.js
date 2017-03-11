@@ -7,7 +7,7 @@ module.exports = class ClientRoutes {
       router
         .route('/api/active-calls')
         .get(ClientController.getActiveCallers)
-        .delete(ClientController.deleteActiveCallers);
+      //   .delete(ClientController.deleteActiveCallers);
 
       router
          .route('/api/create-call')
@@ -16,7 +16,7 @@ module.exports = class ClientRoutes {
       router
         .route('/api/call-details/:id')
         .get(ClientController.getCallDetails)
-        .delete(ClientController.deleteCall);
+      //   .delete(ClientController.deleteCall);
 
       router
          .route('/api/send-message/:message/:id')

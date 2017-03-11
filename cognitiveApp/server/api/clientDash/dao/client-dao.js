@@ -46,6 +46,6 @@ callSchema.statics.deleteCall = (id) => {
     });
 }
 
-// const Call  = mongoose.model('Call', callSchema);
-//
-// module.exports = Call;
+const Call  = mongoose.model('Call', callSchema);
+
+module.exports = Call;
