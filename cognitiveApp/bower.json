@@ -3,7 +3,9 @@
   "main": "cognitiveApp.js",
   "version": "0.0.1",
   "homepage": "https://github.com//cognitiveApp",
-  "authors": ["roeje <email>"],
+  "authors": [
+    "roeje <email>"
+  ],
   "description": "desc",
   "keywords": [],
   "license": "MIT",
@@ -27,9 +29,11 @@
     "angular-route": "~1.5.x",
     "angular-resource": "~1.5.x",
     "bootstrap": "3.3.1",
-    "fontawesome": "~4.3.0"
+    "fontawesome": "~4.3.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "angular-mocks": "~1.5.x"
+    "angular-mocks": "~1.5.x",
+    "underscore": "^1.8.3"
   }
 }

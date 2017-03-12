@@ -14,11 +14,19 @@
 
    			getServices : function(startWeek) {
    				var deferred = $q.defer();
-   				$http.get(getBaseUrl() + '/scheduling/get-services-for-week/' + startWeek).success(function(data) {
+   				$http.get('/scheduling/get-services-for-week' + startWeek).success(function(data) {
    					deferred.resolve(data);
    				});
    				return deferred.promise;
-   			}
+   			},
+
+            getCallDetails : function() {
+               var deferred = $q.defer();
+               $http.get('/api/call-details/1').success(function(data) {
+                  deferred.resolve(data);
+               });
+               return deferred.promise;
+            }
    		}
    	});
 

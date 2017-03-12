@@ -5,19 +5,24 @@ const ClientController = require('../controller/client-controller');
 module.exports = class ClientRoutes {
     static init(router) {
       router
-        .route('/api/active-calls/:id')
+        .route('/api/active-calls')
         .get(ClientController.getActiveCallers)
-        .delete(ClientController.deleteActiveCaller);
+      //   .delete(ClientController.deleteActiveCallers);
 
+      router
+         .route('/api/create-call')
+         .post(ClientController.sendMessage);
 
       router
         .route('/api/call-details/:id')
         .get(ClientController.getCallDetails)
-        .delete(ClientController.deleteCallDetails);
+      //   .delete(ClientController.deleteCall);
 
       router
          .route('/api/send-message/:message/:id')
          .post(ClientController.sendMessage);
+
+
 
     }
 
