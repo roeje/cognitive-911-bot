@@ -32,7 +32,7 @@ module.exports = class ClientController {
       res.status(200).json({status: "Here are the Active Callers"});
    }
 
-   static deleteActiveCaller(req, res) {
+   static deleteActiveCallers(req, res) {
       let _id = req.params.id;
       res.status(200).json({status: "Active Caller Deleted"});
    }
