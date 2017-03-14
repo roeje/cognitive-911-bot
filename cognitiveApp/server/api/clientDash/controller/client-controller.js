@@ -10,9 +10,17 @@ module.exports = class ClientController {
          .catch(error => res.status(400).json(error));
    }
 
+   static getCall(req, res) {
+      let _id = req.id;
+      ClientDAO
+         .getCall(_id)
+         .then(call => res.status(200).json(call))
+         .catch(error => res.status(400).json(error));
+   }
+
    static createCall(req, res) {
       let _call = req.body;
-
+      console.log(req.body);
       ClientDAO
          .createCall(_call)
          .then(call => res.status(201).json(call))
@@ -24,6 +32,13 @@ module.exports = class ClientController {
 
       ClientDAO
          .deleteCall(_id)
+         .then(() => res.status(200).end())
+         .catch(error => res.status(400).json(error));
+   }
+
+   static deleteAllCalls(req, res) {
+      ClientDAO
+         .deleteAllCalls()
          .then(() => res.status(200).end())
          .catch(error => res.status(400).json(error));
    }

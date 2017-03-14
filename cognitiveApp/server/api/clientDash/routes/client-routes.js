@@ -6,16 +6,16 @@ module.exports = class ClientRoutes {
     static init(router) {
       router
          .route('/api/active-calls')
-         .get(ClientController.getActiveCallers)
-         .delete(ClientController.deleteActiveCallers);
+         .get(ClientController.getAllCalls)
+         .delete(ClientController.deleteAllCalls);
 
       router
          .route('/api/create-call')
-         .post(ClientController.sendMessage);
+         .post(ClientController.createCall);
 
       router
-         .route('/api/call-details/:id')
-         .get(ClientController.getCallDetails)
+         .route('/api/call-detail/:id')
+         .get(ClientController.getCall)
          .delete(ClientController.deleteCall);
 
       router
