@@ -11,7 +11,7 @@ module.exports = class ClientController {
    }
 
    static getCall(req, res) {
-      let _id = req.id;
+      let _id = req.params.id;
       ClientDAO
          .getCall(_id)
          .then(call => res.status(200).json(call))
