@@ -8,7 +8,25 @@
          <h1>Chatbot or FB messenger link/button</h1>
          <p>...</p>
          <p><a class="btn btn-primary btn-lg" href="/" role="button">{{testString}}</a></p>
+
+         <div class="fb-send-to-messenger"
+            messenger_app_id="176922396131150"
+            page_id="123123"
+            data-ref="1"
+            color="blue"
+            size="standard">
+         </div>
       </div>
+
+      <script>
+
+         FB.Event.subscribe('send_to_messenger', function(e) {
+            console.log("User was set to ChatBot");
+            console.log("User id is" + e.ref);
+
+         });
+
+      </script>
 
 
   </div>

@@ -20,12 +20,20 @@
    				return deferred.promise;
    			},
 
-            getCallDetails : function() {
+            getCallDetail : function(id) {
                var deferred = $q.defer();
                $http.get('/api/call-details/1').success(function(data) {
                   deferred.resolve(data);
                });
                return deferred.promise;
+            },
+
+            getActiveCalls : function() {
+               var deferred = $q.defer();
+   				$http.get('/api/active-calls').success(function(data) {
+   					deferred.resolve(data);
+   				});
+   				return deferred.promise;
             }
    		}
    	});

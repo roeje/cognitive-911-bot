@@ -6,6 +6,15 @@
 
          $scope.testString = "Hello World";
 
+         MainService.getActiveCalls().then(function(calls){
+            console.log(calls);
+            $scope.activeCalls = calls;
+
+         }, function(data) {
+      		console.log("No active calls");
+      		$scope.activeCalls = [];
+      	});
+
          $scope.callerList = [
             {callerId:0, callStartTime:'15:37', callElapsedTime: '3 minutes', phoneNum:'616-555-5134 ', callerName:'Jane Doe',
                emergencyType:'Heart Attack', location:'111 Oak Street'},
