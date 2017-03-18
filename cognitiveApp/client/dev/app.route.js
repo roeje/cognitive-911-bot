@@ -9,7 +9,7 @@
          .when('/', {
             templateUrl: 'clientDash/templates/home-page.html'
          })
-         .when('/detail', {
+         .when('/detail/:id', {
            templateUrl: 'clientDash/templates/callDetails.html',
            controller: 'DetailController',
            controllerAs: 'detailCtrl'

@@ -22,7 +22,7 @@
 
             getCallDetail : function(id) {
                var deferred = $q.defer();
-               $http.get('/api/call-details/1').success(function(data) {
+               $http.get('/api/call-detail/' + id).success(function(data) {
                   deferred.resolve(data);
                });
                return deferred.promise;
