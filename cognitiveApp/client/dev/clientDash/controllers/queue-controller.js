@@ -2,7 +2,7 @@
   'use strict';
    ng.module('cognitiveApp')
 
-      .controller('QueueController', function($scope, $rootScope, MainService, $http, $window, _) {
+      .controller('QueueController', function($scope, $rootScope, $location, MainService, $http, $window, _) {
 
          $scope.testString = "Hello World";
 
@@ -33,7 +33,7 @@
          ];
 
          $scope.openDetails = function (callerId) {
-            // TODO: redirect to call details or open call details in new tab/window
+            $location.url('/detail/' + callerId);
          };
 
       	// var moment = $window.moment;
