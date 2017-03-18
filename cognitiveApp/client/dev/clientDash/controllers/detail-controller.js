@@ -2,10 +2,11 @@
   'use strict';
    ng.module('cognitiveApp')
 
-      .controller('DetailController', function($scope, $rootScope, MainService, $http, $window, _) {
+      .controller('DetailController', function($scope, $rootScope, MainService, $http, $window, _, $routeParams) {
 
          $scope.testString = "Hello World";
          $scope.callDetalTestString;
+         var id  = "58ca104815c5f8358412d883";
          $scope.detailsList = [
           {detailType:"phoneNum", detailLabel:"Phone Number", detailContent:"616-555-5134"},
                {detailType:"emergencyType", detailLabel:"Emergency Type", detailContent:"Heart Attack"},
@@ -13,7 +14,7 @@
                {detailType:"numInjuries", detailLabel:"Number Of Injuries", detailContent:"Zero"},
             ];
 
-         MainService.getCallDetails().then(function(data) {
+         MainService.getCallDetail(id).then(function(data) {
             console.log(data);
             $scope.callDetalTestString = data;
          }, function(data) {
