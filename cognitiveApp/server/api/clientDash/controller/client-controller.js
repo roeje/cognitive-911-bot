@@ -19,8 +19,8 @@ module.exports = class ClientController {
    }
 
    static createCall(req, res) {
-      let _call = req.body;
-      console.log(req.body);
+      let _call = buildCallData(req.body);
+      console.log(_call);
       ClientDAO
          .createCall(_call)
          .then(call => res.status(201).json(call))
@@ -67,5 +67,20 @@ module.exports = class ClientController {
       let _id = req.params.id;
       let _message = req.params.message;
       res.status(200).json({status: "Message Sent"});
+   }
+
+   static buildCallData(data) {
+      data.dialogAction.firstName = faker.Name.firstName();
+      data.dialogAction.lastName = faker.Name.lastName();
+      data.dialogAction.date = moment().format('MM DD YYYY');
+      data.dialogAction.dateFormatted = moment().format('dddd, MMMM Do YYYY');
+      data.dialogAction.startTime = moment().format('h:mm:ss a');
+      data.dialogAction.endTime = moment().add(2, 'm').add(23, 's').format('h:mm:ss a');
+      data.dialogAction.locationCity = 'Allendale';
+      data.dialogAction.locationState = "MI";
+      data.dialogAction.locationSpecific = 'Mackinac+Hall';
+      data.dialogAction.locationLat = '42.966732';
+      data.dialogAction.locationLong = '-85.886891';
+      return data;
    }
 }

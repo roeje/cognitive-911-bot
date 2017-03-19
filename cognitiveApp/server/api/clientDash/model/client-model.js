@@ -11,7 +11,18 @@ const _callSchema = {
          Phone: {type: String},
          Emergency: {type: String}
       },
-      type: {type: String, default: ""}
+      type: {type: String, default: ""},
+      firstName: {type: String, default: "John"},
+      lastName: {type: String, default: "Smith"},
+      date: {type: Date},
+      dateFormatted: {type: String, default: ""},
+      startTime: {type: String, default: ""},
+      endTime: {type: String, default: ""},
+      locationCity: {type: String, default: ""},
+      locationState: {type: String, default: ""},
+      locationSpecific: {type: String, default: ""},
+      locationLat: {type: String, default: ""},
+      locatoinLong: {type: String, default: ""}
    },
    sessionAttributes: {
       Price: {type: Number, default: 25}

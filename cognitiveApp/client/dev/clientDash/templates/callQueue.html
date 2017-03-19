@@ -12,7 +12,40 @@
 		</div>
 
 		<div>
-			<div class="panel panel-default" ng-repeat="caller in callerList" >
+			<div class="panel panel-default" ng-repeat="caller in activeCalls" >
+				<div class="panel-heading">
+					Emergency Type: {{caller.dialogAction.slots.Emergency}}
+               <div class="btn-group pull-right" role="group">
+                  <button class="btn btn-danger btn-sm" ng-click="deleteCall(caller.callerId)">Delete Call</button>
+                  <button class="btn btn-success btn-sm" ng-click="openDetails(caller.callerId)">View Call</button>
+               </div>
+				</div>
+				<ul class="list-group">
+					<li class="list-group-item">
+						<div class="row">
+							<span class="col-xs-6">Phone Number: {{caller.dialogAction.slots.Phone}}</span>
+							<span class="col-xs-6">Caller Name: {{caller.dialogAction.slots.FirstName}}</span>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<span class="col-xs-6">Location: Allendale, MI</span>
+							<span class="col-xs-6">TBD</span>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<span class="col-xs-6">Call Elapsed Time: {{caller.callElapsedTime}}</span>
+							<span class="col-xs-6">Call Start Time: {{caller.callStartTime}}</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+
+         <!-- Old List -->
+
+         <!-- <div class="panel panel-default" ng-repeat="caller in callerList" >
 				<div class="panel-heading">
 					Emergency Type: {{caller.emergencyType}}
                <div class="btn-group pull-right" role="group">
@@ -40,7 +73,7 @@
 						</div>
 					</li>
 				</ul>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>
