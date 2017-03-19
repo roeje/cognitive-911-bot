@@ -6,7 +6,7 @@
 
          $scope.testString = "Hello World";
          $scope.callDetalTestString;
-         var id  = "58ca104815c5f8358412d883";
+         var id  = $routeParams.id;
          $scope.detailsList = [
           {detailType:"phoneNum", detailLabel:"Phone Number", detailContent:"616-555-5134"},
                {detailType:"emergencyType", detailLabel:"Emergency Type", detailContent:"Heart Attack"},
@@ -16,10 +16,10 @@
 
          MainService.getCallDetail(id).then(function(data) {
             console.log(data);
-            $scope.callDetalTestString = data;
+            $scope.callDetail = data;
          }, function(data) {
             console.log("No data loaded for class details");
-            $scope.callDetalTestString = "None";
+            $scope.callDetail = "None";
          });
       	// var moment = $window.moment;
       	// var updatedServiceList = [];
