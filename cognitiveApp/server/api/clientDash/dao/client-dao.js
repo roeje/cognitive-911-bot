@@ -18,6 +18,20 @@ callSchema.statics.getAllCalls = () => {
       });
 }
 
+callSchema.statics.getCall = (id) => {
+   return new Promise((resolve, reject) => {
+      if (!_.isString(id))
+         return reject(new TypeError('Id is not a valid string.'));
+
+      Call
+         .findById(id)
+         .exec((err, call) => {
+            err ? reject(err)
+               : resolve(call);
+         });
+   });
+}
+
 callSchema.statics.createCall = (call) => {
     return new Promise((resolve, reject) => {
       if (!_.isObject(call))
@@ -44,6 +58,20 @@ callSchema.statics.deleteCall = (id) => {
                   : resolve();
           });
     });
+}
+
+callSchema.statics.deleteAllCalls = () => {
+   return new Promise((resolve, reject) => {
+
+      let _query = {};
+
+      Call
+         .remove(_query)
+         .exec((err, deleted) => {
+            err ? reject(err)
+               : resolve();
+         });
+   });
 }
 
 const Call  = mongoose.model('Call', callSchema);

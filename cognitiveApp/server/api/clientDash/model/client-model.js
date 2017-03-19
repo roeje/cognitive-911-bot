@@ -3,10 +3,34 @@
 const mongoose = require('mongoose');
 
 const _callSchema = {
-   transcript: {type: String, required: false, trim: true},
-   createdAt: {type: Date, default: Date.now},
-   callerFirstName: {type: String, required: true, trim: true},
-   callerLastName: {type: String, required: true, trim: true}
+
+   dialogAction: {
+      slots: {
+         FirstName: {type: String},
+         Location: {type: String},
+         Phone: {type: String},
+         Emergency: {type: String}
+      },
+      type: {type: String, default: ""}
+   },
+   sessionAttributes: {
+      Price: {type: Number, default: 25}
+   }
 }
 
-module.exports = mongoose.Schema(_callSchema);
+const _callSchemaOld = {
+
+   dialogAction: {
+      slots: {
+         PickupDate: {type: Date},
+         PickupTime: {type: String},
+         FlowerType: {type: String}
+      },
+      type: {type: String, default: ""}
+   },
+   sessionAttributes: {
+      Price: {type: Number}
+   }
+}
+
+module.exports = mongoose.Schema(_callSchema, {timestamps: true});

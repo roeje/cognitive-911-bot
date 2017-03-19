@@ -2,9 +2,18 @@
   'use strict';
    ng.module('cognitiveApp')
 
-      .controller('QueueController', function($scope, $rootScope, MainService, $http, $window, _) {
+      .controller('QueueController', function($scope, $rootScope, $location, MainService, $http, $window, _) {
 
          $scope.testString = "Hello World";
+
+         MainService.getActiveCalls().then(function(calls){
+            console.log(calls);
+            $scope.activeCalls = calls;
+
+         }, function(data) {
+      		console.log("No active calls");
+      		$scope.activeCalls = [];
+      	});
 
          $scope.callerList = [
             {callerId:0, callStartTime:'15:37', callElapsedTime: '3 minutes', phoneNum:'616-555-5134 ', callerName:'Jane Doe',
@@ -24,7 +33,7 @@
          ];
 
          $scope.openDetails = function (callerId) {
-            // TODO: redirect to call details or open call details in new tab/window
+            $location.url('/detail/' + callerId);
          };
 
       	// var moment = $window.moment;

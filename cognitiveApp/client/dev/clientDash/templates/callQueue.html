@@ -12,9 +12,13 @@
 		</div>
 
 		<div>
-			<div class="panel panel-default" data-ng-repeat="caller in callerList" data-ng-click="openDetails( caller.callerId )">
+			<div class="panel panel-default" ng-repeat="caller in callerList" >
 				<div class="panel-heading">
 					Emergency Type: {{caller.emergencyType}}
+               <div class="btn-group pull-right" role="group">
+                  <button class="btn btn-danger btn-sm" ng-click="deleteCall(caller.callerId)">Delete Call</button>
+                  <button class="btn btn-success btn-sm" ng-click="openDetails(caller.callerId)">View Call</button>
+               </div>
 				</div>
 				<ul class="list-group">
 					<li class="list-group-item">
