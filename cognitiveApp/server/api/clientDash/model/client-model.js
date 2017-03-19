@@ -22,7 +22,7 @@ const _callSchema = {
       locationState: {type: String, default: ""},
       locationSpecific: {type: String, default: ""},
       locationLat: {type: String, default: ""},
-      locatoinLong: {type: String, default: ""}
+      locationLong: {type: String, default: ""}
    },
    sessionAttributes: {
       Price: {type: Number, default: 25}
