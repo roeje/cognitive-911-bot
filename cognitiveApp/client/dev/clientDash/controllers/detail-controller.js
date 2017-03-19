@@ -16,7 +16,7 @@
 
          MainService.getCallDetail(id).then(function(data) {
             console.log(data);
-            $scope.callDetail = data;
+            $scope.callDetail = data.dialogAction;
          }, function(data) {
             console.log("No data loaded for class details");
             $scope.callDetail = "None";

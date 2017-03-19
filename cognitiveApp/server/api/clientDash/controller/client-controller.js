@@ -31,7 +31,7 @@ module.exports = class ClientController {
       _call.dialogAction.endTime = moment().add(2, 'm').add(23, 's').format('h:mm:ss a');
       _call.dialogAction.locationCity = 'Allendale';
       _call.dialogAction.locationState = "MI";
-      _call.dialogAction.locationSpecific = 'Mackinac+Hall';
+      _call.dialogAction.locationSpecific = 'Mackinac Hall';
       _call.dialogAction.locationLat = '42.966732';
       _call.dialogAction.locationLong = '-85.886891';
       console.log(_call);
