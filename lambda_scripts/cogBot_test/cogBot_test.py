@@ -22,7 +22,6 @@ logger.setLevel(logging.DEBUG)
 
 """ --- Helpers to build responses which match the structure of the necessary dialog actions --- """
 
-'''
 def get_slots(intent_request):
     return intent_request['currentIntent']['slots']
 
@@ -39,8 +38,8 @@ def elicit_slot(session_attributes, intent_name, slots, slot_to_elicit, message)
         }
     }
 
-
 def close(session_attributes, fulfillment_state, message):
+    print "got here close"
     response = {
         'sessionAttributes': session_attributes,
         'dialogAction': {
@@ -49,11 +48,12 @@ def close(session_attributes, fulfillment_state, message):
             'message': message
         }
     }
-
+    print response
     return response
 
-
 def delegate(session_attributes, slots):
+    print "got here delegate"
+    
     return {
         'sessionAttributes': session_attributes,
         'dialogAction': {
@@ -86,7 +86,7 @@ def build_validation_result(is_valid, violated_slot, message_content):
         'message': {'contentType': 'PlainText', 'content': message_content}
     }
 
-
+'''
 def validate_order_flowers(flower_type, date, time):
     flower_types = ['lilies', 'roses', 'tulips']
     if flower_type is not None and flower_type not in flower_types:
@@ -119,25 +119,36 @@ def validate_order_flowers(flower_type, date, time):
 
 
 """ --- Functions that control the bot's behavior --- """
+'''
 
-
-def order_flowers(intent_request):
+#def order_flowers(intent_request):
+def call911(intent_request):
     """
     Performs dialog management and fulfillment for ordering flowers.
     Beyond fulfillment, the implementation of this intent demonstrates the use of the elicitSlot dialog action
     in slot validation and re-prompting.
     """
 
-    flower_type = get_slots(intent_request)["FlowerType"]
-    date = get_slots(intent_request)["PickupDate"]
-    time = get_slots(intent_request)["PickupTime"]
+
+    #flower_type = get_slots(intent_request)["FlowerType"]
+    #date = get_slots(intent_request)["PickupDate"]
+    #time = get_slots(intent_request)["PickupTime"]
     source = intent_request['invocationSource']
+
+    print "got here", source
+
+
+    first_name = get_slots(intent_request)["FirstName"]
+    phone = get_slots(intent_request)["Phone"]
+    location = get_slots(intent_request)["Location"]
+    emergency = get_slots(intent_request)["Emergency"]
 
     if source == 'DialogCodeHook':
         # Perform basic validation on the supplied input slots.
         # Use the elicitSlot dialog action to re-prompt for the first violation detected.
         slots = get_slots(intent_request)
 
+        '''
         validation_result = validate_order_flowers(flower_type, date, time)
         if not validation_result['isValid']:
             slots[validation_result['violatedSlot']] = None
@@ -146,31 +157,54 @@ def order_flowers(intent_request):
                                slots,
                                validation_result['violatedSlot'],
                                validation_result['message'])
-
+		'''
         # Pass the price of the flowers back through session attributes to be used in various prompts defined
         # on the bot model.
         output_session_attributes = intent_request['sessionAttributes']
-        if flower_type is not None:
-            output_session_attributes['Price'] = len(flower_type) * 5  # Elegant pricing model
+        #if flower_type is not None:
+        #    output_session_attributes['Price'] = len(flower_type) * 5  # Elegant pricing model
 
-        return delegate(output_session_attributes, get_slots(intent_request))
+        #print "got here 2"
+
+        #return delegate(output_session_attributes, get_slots(intent_request))
 
     # Order the flowers, and rely on the goodbye message of the bot to define the message to the end user.
     # In a real bot, this would likely involve a call to a backend service.
     return close(intent_request['sessionAttributes'],
                  'Fulfilled',
                  {'contentType': 'PlainText',
-                  'content': 'Thanks, your order for {} has been placed and will be ready for pickup by {} on {}'.format(flower_type, time, date)})
-'''
+                  'content': 'Thank you {}, you are now being connected with a call-taker'.format(first_name)})
 
 
 """ --- Functions that control the bot's behavior --- """
 def post911request(intent_request):
-
-	cogBotHost = 'https://ec2-54-242-20-44.compute-1.amazonaws.com:3333/api/create-call'
-	r = requests.post(cogBotHost, json=sampleJSON, verify=False)
-
-
+    
+    sampleJSON = {
+        "dialogAction": {
+            "slots": {
+                "FirstName": "Morty",
+                "Location": "Rick",
+                "Phone": "906-440-9412",
+                "Emergency": "Fell in radioactive waste and became superhero"
+                },
+            "type": ""
+        },
+        "sessionAttributes": {}
+    }
+    
+    print sampleJSON['dialogAction']['slots']
+    
+    sampleJSON['dialogAction']['slots'] = intent_request['currentIntent']['slots']
+    
+    print intent_request['currentIntent']['slots']
+    
+    cogBotHost = 'https://ec2-54-242-20-44.compute-1.amazonaws.com:3333/api/create-call'
+    r = requests.post(cogBotHost, json=sampleJSON, verify=False)
+    print "Sent request..."
+    print r
+    
+    return call911(intent_request)
+    
 """ --- Intents --- """
 def dispatch(intent_request):
     """
@@ -181,12 +215,8 @@ def dispatch(intent_request):
 
     intent_name = intent_request['currentIntent']['name']
 
-    # Dispatch to your bot's intent handlers
-    #if intent_name == 'OrderFlowers':
-    #    return order_flowers(intent_request)
-
-	if intent_name == 'callForHelp':
-		return post911request(intent_request)
+    if intent_name == 'callForHelp':
+        return post911request(intent_request)
 
     raise Exception('Intent with name ' + intent_name + ' not supported')
 
@@ -200,4 +230,3 @@ def lambda_handler(event, context):
     logger.debug('event.bot.name={}'.format(event['bot']['name']))
 
     return dispatch(event)
-
