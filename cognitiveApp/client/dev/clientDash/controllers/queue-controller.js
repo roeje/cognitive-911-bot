@@ -2,18 +2,23 @@
   'use strict';
    ng.module('cognitiveApp')
 
-      .controller('QueueController', function($scope, $rootScope, $location, MainService, $http, $window, _) {
+      .controller('QueueController', function($scope, $rootScope, $location, MainService, $http, $timeout, $interval, $window, _) {
 
          $scope.testString = "Hello World";
 
-         MainService.getActiveCalls().then(function(calls){
-            console.log(calls);
-            $scope.activeCalls = calls;
+         $scope.getCallData = function() {
+            MainService.getActiveCalls().then(function(calls){
+               console.log(calls);
+               $scope.activeCalls = calls;
 
-         }, function(data) {
-      		console.log("No active calls");
-      		$scope.activeCalls = [];
-      	});
+            }, function(data) {
+         		console.log("No active calls");
+         		$scope.activeCalls = [];
+         	});
+         }
+         $scope.getCallData();
+
+         $interval(function() {$scope.getCallData()}, 5000);
 
          $scope.callerList = [
             {callerId:0, callStartTime:'15:37', callElapsedTime: '3 minutes', phoneNum:'616-555-5134 ', callerName:'Jane Doe',
@@ -35,6 +40,11 @@
          $scope.openDetails = function (callerId) {
             $location.url('/detail/' + callerId);
          };
+
+         $scope.deleteDetail = function(callerId) {
+            MainService.deleteCallDetail(callerId);
+            getCallData();
+         }
 
       	// var moment = $window.moment;
       	// var updatedServiceList = [];
