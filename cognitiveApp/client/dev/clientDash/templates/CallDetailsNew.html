@@ -1,0 +1,162 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<script>
+		var app = angular.module("callerList", []);
+		
+		app.controller("callers", function($scope, $window) {
+			
+		});
+	</script>
+	<style>
+		body {
+			background-color: #1D1C19;
+			padding-top:2em;
+			padding-bottom:2em;
+		}
+		
+		.row {
+			margin-bottom:.5em;
+		}
+		
+		.no-margin {
+			margin:0;
+		}
+		
+		.no-border {
+			border: none;
+		}
+		
+		.margin {
+			margin-bottom:.5em;
+		}
+		.no-padding {
+			padding:0;
+		}
+	</style>
+	
+<div class="container-fluid">
+	<ng-include src="'clientDash/templates/navbar.html'"></ng-include>
+	
+	<div class="app-panel transition offset-1 col-10">
+	
+		<div class="row">
+		
+			<div class="col-12">
+				<div class="card bg-primary">
+					<div class="card-block">
+						<h4 class="display-4 text-center text-white">Call Details</h4>
+					</div>						
+				</div>
+			</div>
+			
+		</div>
+			
+		<div class="row">
+		
+			<div class="col-12">
+				<div class="card no-border">
+					<nav class="nav nav-pills">
+						<div class="row no-margin col-12 no-padding">
+							<li class="nav-item col-12 col-lg-3 no-padding text-lg-center">
+								<a class="nav-link active" href="#">Call Details</a>
+							</li>
+							<li class="nav-item col-12 col-lg-3 no-padding text-lg-center">
+								<a class="nav-link" href="#">Previous Calls</a>
+							</li>
+							<li class="nav-item col-12 col-lg-3 no-padding text-lg-center">
+								<a class="nav-link" href="#">Related Incidents</a>
+							</li>
+							<li class="nav-item col-12 col-lg-3 no-padding text-lg-center">
+								<a class="nav-link" href="#">Close Call</a>
+							</li>
+						</div>
+					</nav>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="row">
+		
+			<div class="col-12 col-sm-12 col-md-12 col-lg-6 margin card-group">
+				<div class="card col-12">
+					<div class="card-block">
+						<h5 class="card-title">Priority</h5>
+						<p class="card-text">
+							{{callDetail.slots.Priority}}
+						</p>
+						<h5 class="card-title">Emergency</h5>
+						<p class="card-text">
+							{{callDetail.slots.Emergency}}
+						</p>
+						<h5 class="card-title">Call Duration</h5>
+						<p class="card-text">
+							{{callDetail.startTime}} - {{callDetail.endTime}}
+						</p>
+						<h5 class="card-title hidden-lg-up">Call Start Time</h5>
+						<p class="card-text hidden-lg-up">
+							{{callDetail.startTime}}
+						</p>
+					</div>				
+				</div>
+			</div>
+			
+			<div class="col-12 col-sm-12 col-md-12 col-lg-6 margin card-group">
+				<div class="card col-12">
+					<div class="card-block">
+						<h5 class="card-title">Caller Name</h5>
+									<p class="card-text">
+										{{callDetail.slots.FirstName}} {{callDetail.lastName}}
+									</p>
+									<h5 class="card-title">Phone Number</h5>
+									<p class="card-text">
+										{{callDetail.slots.Phone}}
+									</p>
+									<h5 class="card-title hidden-md-down">Call Start Time</h5>
+									<p class="card-text hidden-md-down">
+										{{callDetail.startTime}}
+									</p>
+					</div>				
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="row">
+		
+			<div class="col-12 col-sm-12 col-md-12 col-lg-6 margin card-group">
+				<div class="card col-12">
+					<div class="card-block">
+						<h5 class="card-title">Location</h5>
+						<p class="card-text">
+							{{callDetail.locationSpecific}} {{callDetail.locationCity}}, {{callDetail.locationState}}
+						</p>
+						<p class="card-text">
+							Latitude, Longitude: {{callDetail.locationLat}}, {{callDetail.locationLong}}
+						</p>
+						<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDpK2IO0V5MZqBn9CUaseMZDHOpZnSxBwY
+							&q=Mackinac+Hall,Allendale+MI" allowfullscreen>
+						</iframe>
+					</div>				
+				</div>
+			</div>
+			
+			<div class="col-12 col-sm-12 col-md-12 col-lg-6 margin card-group">
+				<div class="card col-12">
+					<div class="card-block">
+						<h5 class="card-title">Transcript</h5>
+						<p class="card-text">
+							{{callDetail.slots.Transcript}}
+						</p>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+
+	</div>
+</div>	
