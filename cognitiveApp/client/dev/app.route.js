@@ -47,7 +47,7 @@
            controllerAs: 'chatCtrl'
          })
          .when('/login', {
-            templateUrl: 'lientDash/templates/login.html',
+            templateUrl: 'clientDash/templates/login.html',
             controller: 'LoginController',
             controllerAs: 'loginCtrl'
          })

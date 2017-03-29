@@ -44,7 +44,7 @@
          function logout() {
             var deferred = $q.defer();
 
-            $http.post("/api/logout", { 
+            $http.post("/api/logout", {
                headers: {
                   "access_token": userInfo.accessToken
                }
