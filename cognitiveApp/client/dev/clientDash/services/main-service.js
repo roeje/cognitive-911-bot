@@ -34,6 +34,15 @@
    					deferred.resolve(data);
    				});
    				return deferred.promise;
+            },
+
+            deleteCallDetail : function(id) {
+               var deferred = $q.defer();
+               $http.delete('/api/call-detail/' + id).success(function(data) {
+                  console.log(data);
+                  deferred.resolve(data);
+               });
+               return deferred.promise;
             }
    		}
    	});
