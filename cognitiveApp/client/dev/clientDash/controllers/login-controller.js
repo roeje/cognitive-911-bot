@@ -8,7 +8,7 @@
 
 
          $scope.login = function() {
-
+            
          }
 
          $scope.logout
