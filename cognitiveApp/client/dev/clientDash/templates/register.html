@@ -7,8 +7,8 @@
 
       <div class="jumbotron">
 
-          <h2>Login</h2>
-          <form name="form" ng-submit="login()" role="form">
+          <h2>Register</h2>
+          <form name="form" ng-submit="register()" role="form">
               <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                   <label for="username">Username</label>
                   <input type="text" name="username" id="username" class="form-control" ng-model="username" required />
@@ -19,12 +19,17 @@
                   <input type="password" name="password" id="password" class="form-control" ng-model="password" required />
                   <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
               </div>
+              <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                  <label for="password2">Confirm Password</label>
+                  <input type="password" name="password2" id="password2" class="form-control" ng-model="password2" required />
+                  <span ng-show="password != password2" class="help-block">Password don't match</span>
+                  <span ng-show="form.password2.$dirty && form.password2.$error.required" class="help-block">Password is required</span>
+              </div>
               <div class="form-actions">
-                  <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Login</button>
+                  <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Register</button>
               </div>
               </br>
-              <div ng-show="validLogin" class="alert alert-danger alert-dismissible" role="alert">Invalid Username. Please try again.</div>
-              <div ng-show="validPass" class="alert alert-danger alert-dismissible" role="alert">Passwords don't match. Please try again.</div>
+              <div ng-show="validLogin" class="alert alert-danger alert-dismissible" role="alert">Invalid Username/Password, Please try again.</div>
               <!-- <span ng-show="validLogin" class="help-block">Invalid Username/Password, Please try again.</span> -->
           </form>
 

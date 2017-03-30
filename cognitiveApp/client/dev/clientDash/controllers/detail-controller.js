@@ -2,7 +2,8 @@
   'use strict';
    ng.module('cognitiveApp')
 
-      .controller('DetailController', function($scope, $rootScope, MainService, $http, $window, _, $routeParams) {
+      .controller('DetailController', function($scope, $rootScope, MainService, AuthService, $http, $window, _, $routeParams) {
+         $scope.userInfo = AuthService.getUserInfo();
 
          $scope.testString = "Hello World";
          $scope.callDetalTestString;

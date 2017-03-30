@@ -5,86 +5,58 @@ const Promise = require('bluebird');
 const userSchema = require('../model/user-model');
 const _ = require('lodash');
 
-userSchema.statics.login = (username) => {
+userSchema.statics.loginUser = (userName) => {
     return new Promise((resolve, reject) => {
-        let _query = {username: username};
+        let _query = {username: userName};
 
-        Call
+        User
           .find(_query)
-          .exec((err, calls) => {
+          .exec((err, user) => {
               err ? reject(err)
-                  : resolve(calls);
+                  : resolve(user);
           });
       });
 }
 
-userSchema.statics.login = (_) => {
+userSchema.statics.logoutUser = (_) => {
     return new Promise((resolve, reject) => {
         let _query = {};
 
-        Call
-          .find(_query)
-          .exec((err, calls) => {
+        User
+          .findOne(_query)
+          .exec((err, user) => {
               err ? reject(err)
-                  : resolve(calls);
+                  : resolve(user);
           });
       });
 }
 
-callSchema.statics.getCall = (id) => {
-   return new Promise((resolve, reject) => {
-      if (!_.isString(id))
-         return reject(new TypeError('Id is not a valid string.'));
-
-      Call
-         .findById(id)
-         .exec((err, call) => {
-            err ? reject(err)
-               : resolve(call);
-         });
-   });
-}
-
-callSchema.statics.createCall = (call) => {
+userSchema.statics.createUser = (user) => {
     return new Promise((resolve, reject) => {
-      if (!_.isObject(call))
-          return reject(new TypeError('Call is not a valid object.'));
+      if (!_.isObject(user))
+          return reject(new TypeError('User is not a valid object.'));
 
-      let _call = new Call(call);
+      let _user = new User(user);
 
-      _call.save((err, saved) => {
+      _user.save((err, saved) => {
         err ? reject(err)
             : resolve(saved);
       });
     });
 }
 
-callSchema.statics.deleteCall = (id) => {
+userSchema.statics.deleteUser = (userName) => {
     return new Promise((resolve, reject) => {
-        if (!_.isString(id))
-            return reject(new TypeError('Id is not a valid string.'));
+        if (!_.isString(userName))
+            return reject(new TypeError('Username is not a valid string.'));
 
-        Call
-          .findByIdAndRemove(id)
+        User
+          .findOneAndRemove({username: userName})
           .exec((err, deleted) => {
               err ? reject(err)
                   : resolve();
           });
     });
-}
-
-callSchema.statics.deleteAllCalls = () => {
-   return new Promise((resolve, reject) => {
-
-      let _query = {};
-
-      Call
-         .remove(_query)
-         .exec((err, deleted) => {
-            err ? reject(err)
-               : resolve();
-         });
-   });
 }
 
 const User  = mongoose.model('User', userSchema);

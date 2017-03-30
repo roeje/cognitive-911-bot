@@ -16,9 +16,20 @@
       <div class="collapse navbar-collapse" id="main-navbar">
          <ul class="nav navbar-nav">
            <li class="active"><a href="/">Home Page<span class="sr-only">(current)</span></a></li>
-           <li><a href="/queue">Caller Queue</a></li>
+           <li>
+             <a ng-show="userInfo" href="/queue">Incoming Call Queue</a>
+           </li>
            <li>
              <a href="/chat" >Caller Portal</span></a>
+           </li>
+         </ul>
+
+         <ul class="nav navbar-nav navbar-right">
+           <li ng-hide="userInfo" class="float-right">
+             <a href="/login">Login</span></a>
+           </li>
+           <li ng-show="userInfo" class="float-right">
+             <a href="/logout">Logout</span></a>
            </li>
          </ul>
       </div><!-- /.navbar-collapse -->

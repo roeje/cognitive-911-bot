@@ -2,8 +2,9 @@
   'use strict';
    ng.module('cognitiveApp')
 
-      .controller('QueueController', function($scope, $rootScope, $location, MainService, $http, $timeout, $interval, $window, _) {
+      .controller('QueueController', function($scope, $rootScope, $location, MainService, AuthService, $http, $timeout, $interval, $window, _) {
 
+         $scope.userInfo = AuthService.getUserInfo();
          $scope.testString = "Hello World";
 
          $scope.getCallData = function() {

@@ -7,7 +7,9 @@
       function($routeProvider) {
         $routeProvider
          .when('/', {
-            templateUrl: 'clientDash/templates/home-page.html'
+            templateUrl: 'clientDash/templates/home-page.html',
+            controller: 'HomeController',
+            controllerAs: 'homeCtrl'
          })
          .when('/detail/:id', {
            templateUrl: 'clientDash/templates/callDetails.html',
@@ -50,6 +52,20 @@
             templateUrl: 'clientDash/templates/login.html',
             controller: 'LoginController',
             controllerAs: 'loginCtrl'
+         })
+         .when('/logout', {
+            resolve: {
+              auth: ["$q", "AuthService", "$location", function($q, AuthService, $location) {
+                AuthService.logout();
+                $location.url('/');
+              }]
+            }
+
+         })
+         .when('/register', {
+            templateUrl: 'clientDash/templates/register.html',
+            controller: 'RegisterController',
+            controllerAs: 'registerCtrl'
          })
          .otherwise({
             redirectTo: '/'

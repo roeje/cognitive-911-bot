@@ -31,6 +31,13 @@ module.exports = class ClientRoutes {
          .route('/api/logout')
          .post(UserController.logout);
 
+      router
+         .route('/api/register')
+         .post(UserController.registerUser);
+
+      router
+         .route('/api/delete-user')
+         .post(UserController.deleteUser);
     }
 
 
