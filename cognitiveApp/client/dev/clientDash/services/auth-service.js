@@ -16,13 +16,17 @@
             $http.post("/api/login", {
                userName: userName,
                password: password
-            }).then(function(result) {
-               userInfo = {
-                  accessToken: result.data[0].token,
-                  userName: result.data[0].username
-               };
-               $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
-               deferred.resolve(userInfo);
+            }).then(function(result) {               
+               if (result.data == null) {
+                  deferred.resolve(null);
+               } else {
+                  userInfo = {
+                     accessToken: result.data[0].token,
+                     userName: result.data[0].username
+                  };
+                  $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+                  deferred.resolve(userInfo);
+               }
             }, function(error) {
                deferred.reject(error);
             });
@@ -36,7 +40,7 @@
             $http.post("/api/register", {
                userName: userName,
                password: password
-            }).then(function(result) {               
+            }).then(function(result) {
                userInfo = {
                   accessToken: result.data.token,
                   userName: result.data.username

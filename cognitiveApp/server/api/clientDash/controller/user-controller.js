@@ -14,11 +14,11 @@ module.exports = class UserController {
       UserDAO
          .loginUser(_username)
          .then(function(user) {
-            password(_password).verifyAgainst(user.token, function(error, success) {
+            password(_password).verifyAgainst(user[0].token, function(error, success) {
                if(error) {
                   throw new Error('Error validating Password');
                }
-               if(!success) {
+               if(success) {
                   res.status(200).json(user);
                } else {
                   res.status(200).json(null);

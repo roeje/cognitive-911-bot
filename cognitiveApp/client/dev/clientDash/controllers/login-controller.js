@@ -11,8 +11,8 @@
 
          $scope.login = function() {
             console.log("Logging in User: " + $scope.username);
-            AuthService.login($scope.username, $scope.password).then(function(results) {               
-               if(!results.accessToken) {
+            AuthService.login($scope.username, $scope.password).then(function(results) {
+               if(!results) {
                   $scope.validLogin = true;
                } else {
                   $scope.validLogin = false;
