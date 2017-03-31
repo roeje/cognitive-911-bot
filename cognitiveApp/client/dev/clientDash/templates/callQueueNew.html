@@ -1,0 +1,153 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script>
+		$(".border-colored").addClass("priority1");
+		var app = angular.module("callerList", []);
+		
+		app.controller("callers", function($scope, $window) {
+		});
+	</script>
+	<script>
+		$( document ).ready(function() {
+				$(".border-colored").addClass("priority1");
+		});
+	</script>
+	<style>
+		body {
+			background-color: #1D1C19;
+			padding-top:2em;
+			padding-bottom:2em;
+		}
+		
+		.row {
+			margin-bottom:.5em;
+		}
+		
+		.no-margin {
+			margin:0;
+		}
+		
+		.no-border {
+			border: none;
+		}
+		
+		.border-colored {
+			border-width: 2px;
+		}
+		
+		.margin {
+			margin-bottom:.5em;
+		}
+		.no-padding {
+			padding:0;
+		}
+		
+		.priority1 {
+			border-color: #FF0000; #Red
+		}
+		
+		.priority2 {
+			border-color:#FF8040 ; #Orange
+		}
+		
+		.priority3 {
+			background-color: #FFFF00; #Yellow
+		}
+		
+		.priority4 {
+			background-color: #00FF00; #Green
+		}
+		
+		.priority5 {
+			background-color: #800080; #Purple
+		}
+		
+		.priority6 {
+			background-color: #0000FF; #Blue
+		}
+		
+		.closed {
+			background-color: #202020; #Gray
+		}
+	</style>
+<div class="container-fluid">
+  <div class="app-panel transition offset-1 col-10">
+
+    <ng-include src="'clientDash/templates/navbar.html'"></ng-include>
+
+		<div class="row">
+		
+			<div class="col-12">
+				<div class="card bg-primary">
+					<div class="card-block">
+						<h4 class="display-4 text-center text-white">911 Caller Queue</h4>
+					</div>						
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="row">
+		
+			<div class="col-12">
+				<div class="card no-border">
+					<nav class="nav nav-pills">
+						<div class="row no-margin col-12 no-padding">
+							<li class="nav-item col-12 col-lg-6 no-padding text-lg-center">
+								<a class="nav-link active" href="#">911 Call Queue</a>
+							</li>
+							<li class="nav-item col-12 col-lg-6 no-padding text-lg-center">
+								<a class="nav-link" href="#">Closed Calls</a>
+							</li>
+						</div>
+					</nav>
+				</div>
+			</div>
+			
+		</div>
+
+	<div class="row">
+		<div class="col-12 col-sm-12 col-md-12 margin card-group">
+				<div class="card border-colored">
+					<h5 class="card-header text-center border-colored">{{caller.dialogAction.slots.Priority}}</h5>
+					<div class="card-block">
+						<div class="row no-margin">
+							<div class="col-12 col-lg-6">
+								<h5 class="card-title">Emergency</h5>
+								<p class="card-text">
+									{{callDetail.slots.Emergency}}
+								</p>
+								<h5 class="card-title">Caller Role</h5>
+								<p class="card-text">
+									{{caller.dialogAction.callerRole}}
+								</p>
+								<h5 class="card-title">Caller Name</h5>
+								<p class="card-text">
+									{{caller.dialogAction.slots.FirstName}} {{caller.dialogAction.lastName}}
+								</p>
+							</div>
+							<div class="col-12 col-lg-6">
+								<h5 class="card-title">Phone Number</h5>
+								<p class="card-text">
+									{{caller.dialogAction.slots.Phone}}
+								</p>
+								<h5 class="card-title">Call Start Time</h5>
+								<p class="card-text">
+									{{caller.dialogAction.startTime}}
+								</p>
+								<h5 class="card-title">Call Duration</h5>
+								<p class="card-text">
+									{{caller.dialogAction.endTime}}-{{caller.dialogAction.startTime}}
+								</p>
+							</div>
+						</div>
+					</div>				
+				</div>
+		</div>
+	</div>
+</div>
