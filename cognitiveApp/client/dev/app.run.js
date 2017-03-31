@@ -9,7 +9,7 @@
 
          $rootScope.$on("$routeChangeError", function(event, current, previous, eventObj) {
             if (eventObj.authenticated === false) {
-               $location.url("/");
+               $location.url("/login");
             }
          });
       }]);
