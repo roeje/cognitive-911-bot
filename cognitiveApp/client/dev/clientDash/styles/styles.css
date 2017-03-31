@@ -1,10 +1,35 @@
+/* OLD CSS */
 body {
    background-color: #1D1C19;
    padding-top: 70px;
-   /*padding-top:2em;
-   padding-bottom:2em;*/
 }
 
 #header {
    margin-bottom:20px;
+}
+
+/* New CSS */
+/*body {
+   background-color: #1D1C19;
+   padding-top:2em;
+   padding-bottom:2em;
+}*/
+
+.row {
+   margin-bottom:.5em;
+}
+
+.no-margin {
+   margin:0;
+}
+
+.no-border {
+   border: none;
+}
+
+.margin {
+   margin-bottom:.5em;
+}
+.no-padding {
+   padding:0;
 }
