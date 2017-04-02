@@ -13,7 +13,8 @@
 	</script>
 	<script>
 		$( document ).ready(function() {
-				$(".border-colored").addClass("priority1");
+				$(".border-colored").addClass("closed");
+				$(".priority-block").addClass("closed-background");
 		});
 	</script>
 	<style>
@@ -155,14 +156,6 @@
 		}
 		
 		@media (min-width: 576px) {
-			.border-colored {
-				border-radius: 0 .25rem .25rem 0;
-			}
-			
-			.priority-block {
-				border-radius: .25rem 0 0 .25rem;
-				max-width: 2rem;
-			}
 			
 			.tile {
 				width:50%;
@@ -199,10 +192,10 @@
 					<nav class="nav nav-pills">
 						<div class="row no-margin col-12 no-padding">
 							<li class="nav-item col-12 col-lg-4 no-padding text-lg-center">
-								<a class="nav-link active" href="#">Call Details</a>
+								<a class="nav-link" href="#">Call Details</a>
 							</li>
 							<li class="nav-item col-12 col-lg-4 no-padding text-lg-center">
-								<a class="nav-link" href="#">Previous Calls</a>
+								<a class="nav-link active" href="#">Previous Calls</a>
 							</li>
 							<li class="nav-item col-12 col-lg-4 no-padding text-lg-center">
 								<a class="nav-link" href="#">Related Incidents</a>
@@ -214,66 +207,56 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-12">
-				<div class="">
-					<div class="card col-12">
-						<div class="row no-bottom-margin">
-							<div class="small-card-block col-12 col-md-6 col-lg-4">
-								<h5 class="card-title">Priority</h5>
-								<p class="card-text">
-									{{callDetail.slots.Priority}}
-								</p>
-							</div>
-							<div class="small-card-block col-12 col-md-6 col-lg-4">
-								<h5 class="card-title">Call Duration</h5>
-								<p class="card-text">
-									{{callDetail.startTime}} - {{callDetail.endTime}}
-								</p>
-							</div>
-							<div class="small-card-block col-12 col-md-6 col-lg-4">
-								<h5 class="card-title">Call Start Time</h5>
-								<p class="card-text">
-									{{callDetail.startTime}}
-								</p>
-							</div>
+			<div class="col-12 col-lg-6  card-deck margin ">
+				<div class="card ">
+					<div class="card-header text-center">
+						<h5> Call Details </h5>
+					</div>
+					<div class="small-card-block">
+					<div class="small-card-block">
+						<div class="margin">
+							<h5 class="card-title">Priority</h5>
+							<p class="card-text">
+								{{callDetail.slots.Priority}}
+							</p>
 						</div>
-						<div class="row no-bottom-margin">
-							<div class="small-card-block col-12 col-md-6 col-lg-4">
-									<h5 class="card-title">Emergency</h5>
-									<p class="card-text">
-										{{callDetail.slots.Emergency}}
-									</p>
-							</div>
-							<div class="small-card-block col-12 col-md-6 col-lg-4">
-									<h5 class="card-title">Caller Name</h5>
-									<p class="card-text">
-										{{callDetail.slots.FirstName}} {{callDetail.lastName}}
-									</p>
-							</div>
-							<div class="small-card-block col-12 col-md-6 col-lg-4">
-									<h5 class="card-title">Phone Number</h5>
-									<p class="card-text">
-										{{callDetail.slots.Phone}}
-									</p>
-							</div>
+						<div class="margin">
+							<h5 class="card-title">Call Duration</h5>
+							<p class="card-text">
+								{{callDetail.startTime}} - {{callDetail.endTime}}
+							</p>
 						</div>
-						<div class="row no-bottom-margin">
-							<div class="small-card-block col-12">
-									<h5 class="card-title">Emergency Description</h5>
-									<p class="card-text">
-										{{callDetail.slots.EmergencyDescription}}
-									</p>
-							</div>
+						<div class="margin">
+							<h5 class="card-title">Call Start Time</h5>
+							<p class="card-text">
+								{{callDetail.startTime}}
+							</p>
+						</div>
+						<div class="margin">
+							<h5 class="card-title">Emergency</h5>
+							<p class="card-text">
+								{{callDetail.slots.Emergency}}
+							</p>
+						</div>
+						<div class="margin">
+							<h5 class="card-title">Caller Name</h5>
+							<p class="card-text">
+								{{callDetail.slots.FirstName}} {{callDetail.lastName}}
+							</p>
+						</div>
+						<div class="margin">
+							<h5 class="card-title">Phone Number</h5>
+							<p class="card-text">
+								{{callDetail.slots.Phone}}
+							</p>
 						</div>
 					</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="row card-deck">
-		
-			<div class="col-12 col-lg-6 card-deck">
-				<div class="card margin">
+					<div class="small-card-block">
+						<h5 class="card-title">Emergency Description</h5>
+						<p class="card-text">
+							{{callDetail.slots.EmergencyDescription}}
+						</p>
+					</div>
 					<div class="small-card-block">
 						<h5 class="card-title">Location</h5>
 						<p class="card-text">
@@ -286,21 +269,92 @@
 							&q=Mackinac+Hall,Allendale+MI" allowfullscreen>
 						</iframe>
 					</div>				
-				</div>
-			</div>
-			
-			<div class="col-12 col-lg-6 card-deck">
-				<div class="card margin">
 					<div class="small-card-block">
 						<h5 class="card-title">Transcript</h5>
 						<p class="card-text">
 							{{callDetail.slots.Transcript}}
 						</p>
 					</div>
+					</div>
 				</div>
 			</div>
 			
-		</div>
+			<div class="col-12 col-lg-6 ">
+				<div class="card">
+					<div class="card-header text-center">
+						<h5>Previous Calls</h5>
+					</div>
+					<div class="small-card-block">
+						<div class="groupheader card">
+							<div class="card-header text-center">
+								<h5> Related Incidents </h5>
+							</div>
+							<div class="card-block small-card-block">
+								<!-- Insert the <div class="queue-row row"> of each incident in the group -->
+								
+							</div>
+						</div>
+								
+							
+						<div class="queue-row">
+							<div class="col-12">
+									<div class="row no-bottom-margin card-deck">
+										<div class="col-12 card priority-block border-colored rounded-top">
+											<p></p>
+										</div>
+									</div>
+									<div class="row no-bottom-margin card-deck">
+										<div class="card border-colored">
+											<div class="small-card-block">
+												<div class="row">
+													<div class="col-12 col-md-6">
+														<h5 class="card-title margin">Emergency</h5>
+														<p class="card-text">
+															Traffic Accident
+															<!-- {{callDetail.slots.Emergency}} -->
+														</p>
+													</div>
+													<div class="col-12 col-md-6">
+														<h5 class="card-title margin">Call Duration</h5>
+														<p class="card-text">
+															10m 32s
+															<!--{{caller.dialogAction.endTime}}-{{caller.dialogAction.startTime}} -->
+														</p>
+													</div>
+													<div class="col-12 col-md-6">
+														<h5 class="card-title margin">Caller Role</h5>
+														<p class="card-text">
+															Victim
+															<!--{{caller.dialogAction.callerRole}} -->
+														</p>
+													</div>
+													<div class="col-12 col-md-6 d-flex flex-column flex-sm-row">
+														<div class="tile pr-3">
+															<h5 class="card-title margin">Previous</h5>
+															<p class="card-text">
+																##
+															</p>
+														</div>
+														<div class="tile">
+															<h5 class="card-title margin">Incident</h5>
+															<p class="card-text">
+																##
+															</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>	
+									</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				
+			</div>
 
+		</div>
 	</div>
 </div>	
