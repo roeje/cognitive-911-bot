@@ -12,6 +12,10 @@
 		});
 	</script>
 	<script>
+		$( document ).ready(function() {
+				$(".border-colored").addClass("closed");
+				$(".priority-block").addClass("closed-background");
+		});
 	</script>
 	<style>
 		body {
@@ -25,7 +29,7 @@
 			margin-right: 4%;
 		}
 		
-		.row, .groupheader {
+		.row , .groupheader {
 			margin-bottom:.5em;
 		}
 		
@@ -124,12 +128,12 @@
 		}
 		
 		.closed {
-			border-color: #202020; /* Gray */
+			border-color: #808080; /* Gray */
 		}
 		
-		.card .closed-background {
-			background-color: #0000FF; 
-			border-color:#0000FF; 
+		.closed-background {
+			background-color: #808080; 
+			border-color:#808080; 
 		}
 		
 		.priority-block {
@@ -199,10 +203,10 @@
 			<div class="col-12">
 				<div class="col-12">
 					<div class="row card-group no-bottom-margin">
-						<div class="col-12 card priority-block border-colored rounded-top closed closed-background">
+						<div class="col-12 card priority-block border-colored rounded-top">
 							<p></p>
 						</div>
-						<div class="col-12 col-sm-12 card border-colored closed">
+						<div class="col-12 col-sm-12 card border-colored">
 							<div class="row">
 								<div class="col-12 col-sm-6 col-md-3">
 									<h5 class="card-title">Emergency</h5>
