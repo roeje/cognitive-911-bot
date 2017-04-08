@@ -18,6 +18,19 @@ callSchema.statics.getAllCalls = () => {
       });
 }
 
+callSchema.statics.getClosedCalls = () => {
+    return new Promise((resolve, reject) => {
+        let _query = {dialogAction.closed: true};
+
+        Call
+          .find(_query)
+          .exec((err, calls) => {
+              err ? reject(err)
+                  : resolve(calls);
+          });
+      });
+}
+
 callSchema.statics.getCall = (id) => {
    return new Promise((resolve, reject) => {
       if (!_.isString(id))
@@ -28,6 +41,19 @@ callSchema.statics.getCall = (id) => {
          .exec((err, call) => {
             err ? reject(err)
                : resolve(call);
+         });
+   });
+}
+
+callSchema.statics.getCallsByGroup = (group) => {
+   return new Promise((resolve, reject) => {
+      let _query = {dialogAction.groupID: group};
+
+      Call
+         .find(_query)
+         .exec((err, calls) => {
+            err ? reject(err)
+               : resolve(calls);
          });
    });
 }
@@ -54,6 +80,20 @@ callSchema.statics.deleteCall = (id) => {
         Call
           .findByIdAndRemove(id)
           .exec((err, deleted) => {
+              err ? reject(err)
+                  : resolve();
+          });
+    });
+}
+
+callSchema.statics.closeCall = (id) => {
+    return new Promise((resolve, reject) => {
+        if (!_.isString(id))
+            return reject(new TypeError('Id is not a valid string.'));
+
+        Call
+          .findOneAndUpdate(id, {closed: true})
+          .exec((err, updated) => {
               err ? reject(err)
                   : resolve();
           });

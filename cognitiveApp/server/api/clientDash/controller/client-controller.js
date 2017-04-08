@@ -13,6 +13,21 @@ module.exports = class ClientController {
          .catch(error => res.status(400).json(error));
    }
 
+   static getClosedCalls(req, res) {
+      ClientDAO
+         .getClosedCalls()
+         .then(calls => res.status(200).json(calls))
+         .catch(error => res.status(400).json(error));
+   }
+
+   static getCallsByGroup(req, res) {
+      let _groupID = req.params.groupID
+      ClientDAO
+         .getClosedCalls(_groupID)
+         .then(calls => res.status(200).json(calls))
+         .catch(error => res.status(400).json(error));
+   }
+
    static getCall(req, res) {
       let _id = req.params.id;
       ClientDAO
@@ -46,6 +61,15 @@ module.exports = class ClientController {
 
       ClientDAO
          .deleteCall(_id)
+         .then(() => res.status(200).end())
+         .catch(error => res.status(400).json(error));
+   }
+
+   static closeCall(req, res) {
+      let _id = req.params.id;
+
+      ClientDAO
+         .closeCall(_id)
          .then(() => res.status(200).end())
          .catch(error => res.status(400).json(error));
    }

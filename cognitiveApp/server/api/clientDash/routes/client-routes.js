@@ -11,8 +11,16 @@ module.exports = class ClientRoutes {
          .delete(ClientController.deleteAllCalls);
 
       router
+         .route('/api/group-calls/:groupID')
+         .get(ClientController.getCallsByGroup);
+
+      router
          .route('/api/create-call')
          .post(ClientController.createCall);
+
+      router
+         .route('/api/close-call/:id')
+         .post(ClientController.closeCall);
 
       router
          .route('/api/call-detail/:id')
