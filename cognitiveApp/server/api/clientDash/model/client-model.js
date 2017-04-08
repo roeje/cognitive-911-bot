@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const _callSchema = {
 
    dialogAction: {
+      groupID: {type: Number, default: null},
+      closed: {type: Boolean, default: false},
       slots: {
          FirstName: {type: String},
          Location: {type: String},

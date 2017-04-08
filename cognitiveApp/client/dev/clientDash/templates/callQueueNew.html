@@ -6,16 +6,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script>
-		$(".border-colored").addClass("priority1");
 		var app = angular.module("callerList", []);
-		
+
 		app.controller("callers", function($scope, $window) {
 		});
 	</script>
 	<script>
-		$( document ).ready(function() {
-				$(".border-colored").addClass("priority1");
-		});
 	</script>
 	<style>
 		body {
@@ -23,77 +19,155 @@
 			padding-top:2em;
 			padding-bottom:2em;
 		}
-		
-		.row {
+
+		.app-panel {
+			margin-left: 4%;
+			margin-right: 4%;
+		}
+
+		.row, .groupheader {
 			margin-bottom:.5em;
 		}
-		
+
 		.no-margin {
 			margin:0;
 		}
-		
+
 		.no-border {
 			border: none;
 		}
-		
+
 		.border-colored {
 			border-width: 2px;
+			border-radius: 0 0 .25rem .25rem;
 		}
-		
+
 		.margin {
 			margin-bottom:.5em;
+		}
+
+		.no-bottom-margin {
+			margin-bottom:0;
 		}
 		.no-padding {
 			padding:0;
 		}
-		
+
+		.no-right-padding {
+			padding-right: 0;
+		}
+
+		.no-left-padding {
+			padding-left: 0;
+		}
+
+		.border-colored .card-block {
+			padding:.5rem;
+		}
+
+		.small-card-block {
+			padding:.5rem .5rem 0 .5rem;
+		}
+
 		.priority1 {
-			border-color: #FF0000; #Red
+			border-color: #FF0000; /* Red */
 		}
-		
+
+		.priority1-background {
+			background-color: #FF0000;
+			border-color: #FF0000;
+		}
+
 		.priority2 {
-			border-color:#FF8040 ; #Orange
+			border-color:#FF8040 ;  /* Orange */
 		}
-		
+
+		.priority2-background {
+			background-color: #FF8040;
+			border-color:#FF8040;
+		}
+
 		.priority3 {
-			background-color: #FFFF00; #Yellow
+			border-color: #FFFF00; /* Yellow */
 		}
-		
+
+		.priority3-background {
+			background-color: #FFFF00;
+			border-color:#FFFF00;
+		}
+
 		.priority4 {
-			background-color: #00FF00; #Green
+			border-color: #00FF00; /* Green */
 		}
-		
+
+		.priority4-background {
+			background-color: #00FF00;
+			border-color:#00FF00;
+		}
+
 		.priority5 {
-			background-color: #800080; #Purple
+			border-color: #800080; /* Purple */
 		}
-		
+
+		.priority5-background {
+			background-color: #800080;
+			border-color:#800080;
+		}
+
 		.priority6 {
-			background-color: #0000FF; #Blue
+			border-color: #0000FF; /* Blue */
 		}
-		
+
+		.priority6-background {
+			background-color: #0000FF;
+			border-color:#0000FF;
+		}
+
 		.closed {
-			background-color: #202020; #Gray
+			border-color: #202020; /* Gray */
+		}
+
+		.card .closed-background {
+			background-color: #0000FF;
+			border-color:#0000FF;
+		}
+
+		.priority-block {
+			border-radius: .25rem .25rem 0 0;
+		}
+
+		@media (min-width: 576px) {
+			.border-colored {
+				border-radius: 0 .25rem .25rem 0;
+			}
+
+			.priority-block {
+				border-radius: .25rem 0 0 .25rem;
+				max-width: 2rem;
+			}
+
+			.tile {
+				width:50%;
+			}
 		}
 	</style>
+
 <div class="container-fluid">
-  <div class="app-panel transition offset-1 col-10">
+  <div class="app-panel transition">
 
     <ng-include src="'clientDash/templates/navbar.html'"></ng-include>
 
 		<div class="row">
-		
 			<div class="col-12">
 				<div class="card bg-primary">
 					<div class="card-block">
 						<h4 class="display-4 text-center text-white">911 Caller Queue</h4>
-					</div>						
+					</div>
 				</div>
 			</div>
-			
 		</div>
-		
+
 		<div class="row">
-		
 			<div class="col-12">
 				<div class="card no-border">
 					<nav class="nav nav-pills">
@@ -108,46 +182,70 @@
 					</nav>
 				</div>
 			</div>
-			
 		</div>
 
-	<div class="row">
-		<div class="col-12 col-sm-12 col-md-12 margin card-group">
-				<div class="card border-colored">
-					<h5 class="card-header text-center border-colored">{{caller.dialogAction.slots.Priority}}</h5>
-					<div class="card-block">
-						<div class="row no-margin">
-							<div class="col-12 col-lg-6">
-								<h5 class="card-title">Emergency</h5>
-								<p class="card-text">
-									{{callDetail.slots.Emergency}}
-								</p>
-								<h5 class="card-title">Caller Role</h5>
-								<p class="card-text">
-									{{caller.dialogAction.callerRole}}
-								</p>
-								<h5 class="card-title">Caller Name</h5>
-								<p class="card-text">
-									{{caller.dialogAction.slots.FirstName}} {{caller.dialogAction.lastName}}
-								</p>
-							</div>
-							<div class="col-12 col-lg-6">
-								<h5 class="card-title">Phone Number</h5>
-								<p class="card-text">
-									{{caller.dialogAction.slots.Phone}}
-								</p>
-								<h5 class="card-title">Call Start Time</h5>
-								<p class="card-text">
-									{{caller.dialogAction.startTime}}
-								</p>
-								<h5 class="card-title">Call Duration</h5>
-								<p class="card-text">
-									{{caller.dialogAction.endTime}}-{{caller.dialogAction.startTime}}
-								</p>
+		<div class="groupheader card">
+			<div class="card-header text-center">
+				<h5> Related Incidents </h5>
+			</div>
+			<div class="card-block small-card-block">
+				<!-- Insert the <div class="queue-row row"> of each incident in the group -->
+
+			</div>
+		</div>
+
+		<!-- This element is the repeating element of the queue items -->
+		<div class="queue-row row">
+			<div class="col-12">
+				<div class="col-12">
+					<div class="row card-group no-bottom-margin">
+						<div class="col-12 card priority-block border-colored rounded-top closed closed-background">
+							<p></p>
+						</div>
+						<div class="col-12 col-sm-12 card border-colored closed">
+							<div class="row">
+								<div class="col-12 col-sm-6 col-md-3">
+									<h5 class="card-title">Emergency</h5>
+									<p class="card-text">
+										Traffic Accident
+										<!-- {{callDetail.slots.Emergency}} -->
+									</p>
+								</div>
+								<div class="col-12 col-sm-6  col-md-3">
+									<h5 class="card-title">Call Duration</h5>
+									<p class="card-text">
+										10m 32s
+										<!--{{caller.dialogAction.endTime}}-{{caller.dialogAction.startTime}} -->
+									</p>
+								</div>
+								<div class="col-12 col-sm-6  col-md-3">
+									<h5 class="card-title">Caller Role</h5>
+									<p class="card-text">
+										Victim
+										<!--{{caller.dialogAction.callerRole}} -->
+									</p>
+								</div>
+								<div class="col-12 col-sm-6  col-md-3 d-flex flex-column flex-sm-row">
+										<div class="tile pr-3">
+											<h5 class="card-title">Previous</h5>
+											<p class="card-text">
+												##
+											</p>
+										</div>
+										<div class="tile">
+											<h5 class="card-title">Incident</h5>
+											<p class="card-text">
+												##
+											</p>
+										</div>
+								</div>
 							</div>
 						</div>
-					</div>				
+					</div>
 				</div>
+			</div>
 		</div>
+
+
 	</div>
 </div>
