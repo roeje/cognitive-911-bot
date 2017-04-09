@@ -11,6 +11,11 @@ module.exports = class ClientRoutes {
          .delete(ClientController.deleteAllCalls);
 
       router
+         .route('/api/active-call-groups')
+         .get(ClientController.getAllCallGroups)
+
+
+      router
          .route('/api/group-calls/:groupID')
          .get(ClientController.getCallsByGroup);
 

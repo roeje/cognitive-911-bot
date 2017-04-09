@@ -3,6 +3,7 @@
 const ClientDAO = require('../dao/client-dao');
 const moment = require('moment');
 const faker = require('Faker');
+const _ = require('underscore');
 
 module.exports = class ClientController {
 
@@ -10,6 +11,40 @@ module.exports = class ClientController {
       ClientDAO
          .getAllCalls()
          .then(calls => res.status(200).json(calls))
+         .catch(error => res.status(400).json(error));
+   }
+
+   static getAllCallGroups(req, res) {
+      ClientDAO
+         .getAllCalls()
+         .then(function(calls){
+            var used = [];
+            var groups = [];
+
+            _.each(calls, function(call) {
+               if (!_.contains(used, call._id)) {
+                  var new_group = []
+                  new_group.push(call);
+                  used.push(call._id);
+                  _.each(calls, function(c){
+                     // console.log(_.contains(used, c._id));
+                     if (!_.contains(used, c._id)) {
+                        // var time_one = moment(call.createdAt);
+                        // var time_two = moment(c.createAt);
+                        // var within_15 = (time_one.add(15, 'm').isBefore(time_two) && time_one.subtract(15, 'm').is)
+                        var match = _.intersection(call.sessionAttributes.DuplicationKeywords, c.sessionAttributes.DuplicationKeywords);
+                        console.log(match.length);
+                        if (match.length >= 2) {
+                           new_group.push(c);
+                           used.push(c._id);
+                        }
+                     }
+                  })
+                  groups.push(new_group);
+               }
+            });
+            res.status(200).json(groups)
+         })
          .catch(error => res.status(400).json(error));
    }
 

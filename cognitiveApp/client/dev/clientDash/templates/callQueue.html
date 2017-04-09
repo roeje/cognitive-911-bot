@@ -182,7 +182,7 @@
 		</div>
 
 		<!-- This element is the repeating element of the queue items -->
-		<div class="queue-row row" ng-repeat="caller in activeCalls">
+		<div class="queue-row row" ng-repeat="caller in activeCallGroups">
 			<div class="col-12">
 				<div class="col-12">
 					<div class="row card-group no-bottom-margin">
@@ -195,7 +195,7 @@
 									<h5 class="card-title">Emergency</h5>
 									<p class="card-text">
 										<!-- Traffic Accident -->
-										{{callDetail.slots.Emergency}}
+										{{caller.dialogAction.slots.EmergencyType}}
 									</p>
 								</div>
 								<div class="col-12 col-sm-6  col-md-3">

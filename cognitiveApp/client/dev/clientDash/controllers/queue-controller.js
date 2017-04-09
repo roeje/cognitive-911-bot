@@ -19,6 +19,19 @@
          }
          $scope.getCallData();
 
+         $scope.getCallGroupData = function() {
+            MainService.getActiveCallGroups().then(function(groups){
+               console.log("Call Groups");
+               console.log(groups);
+               $scope.activeCallGroups = groups;
+
+            }, function(data) {
+         		console.log("No active call groups");
+         		$scope.activeCallGroups = [];
+         	});
+         }
+         $scope.getCallGroupData();
+
          $interval(function() {$scope.getCallData()}, 5000);
 
          $scope.callerList = [
