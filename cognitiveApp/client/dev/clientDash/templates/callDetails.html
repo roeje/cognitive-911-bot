@@ -1,97 +1,185 @@
 
+<style>
+	body {
+		background-color: #1D1C19;
+		padding-top:2em;
+		padding-bottom:2em;
+	}
+
+	img {
+		object-fit: fill;
+		width: 5rem;
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+		padding-right:1rem;
+	}
+
+	.app-panel {
+		margin-left: 4%;
+		margin-right: 4%;
+	}
+
+	.row , .groupheader {
+		margin-bottom:.5em;
+	}
+
+	.no-margin {
+		margin:0;
+	}
+
+	.no-border {
+		border: none;
+	}
+
+	.border-colored {
+		border-width: 2px;
+		border-radius: 0 0 .25rem .25rem;
+	}
+
+	.margin {
+		margin-bottom:.5em;
+	}
+
+	.no-bottom-margin {
+		margin-bottom:0;
+	}
+	.no-padding {
+		padding:0;
+	}
+
+	.no-right-padding {
+		padding-right: 0;
+	}
+
+	.no-left-padding {
+		padding-left: 0;
+	}
+
+	.border-colored .card-block {
+		padding:.5rem;
+	}
+
+	.small-card-block {
+		padding:.5rem;
+	}
+
+	.small-card-block > h5 {
+		margin-bottom:.5rem;
+	}
+</style>
+
+<script>
+	$( document ).ready(function() {
+			$(".border-colored").addClass("priority1");
+	});
+</script>
+
 <div class="container-fluid">
 	<ng-include src="'clientDash/templates/navbar.html'"></ng-include>
 
-	<div class="app-panel transition offset-1 col-10">
+	<div class="app-panel transition">
 
 		<div class="row">
-
 			<div class="col-12">
 				<div class="card bg-primary">
-					<div class="card-block">
-						<h4 class="display-4 text-center text-white">Call Details</h4>
+					<div class="row no-bottom-margin">
+					<div class="col-1">
+							<img src="./back-arrow2.png">
+					</div>
+					<div class="card-block col-10">
+						<h4 class="display-3 text-center text-white">Call Details</h4>
+					</div>
+					<div class="col-1">
+							<img src="./close-x.png">
+					</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
 
 		<div class="row">
-
 			<div class="col-12">
 				<div class="card no-border">
 					<nav class="nav nav-pills">
 						<div class="row no-margin col-12 no-padding">
-							<li class="nav-item col-12 col-lg-3 no-padding text-lg-center">
+							<li class="nav-item col-12 col-lg-4 no-padding text-lg-center">
 								<a class="nav-link active" href="#">Call Details</a>
 							</li>
-							<li class="nav-item col-12 col-lg-3 no-padding text-lg-center">
+							<li class="nav-item col-12 col-lg-4 no-padding text-lg-center">
 								<a class="nav-link" href="#">Previous Calls</a>
 							</li>
-							<li class="nav-item col-12 col-lg-3 no-padding text-lg-center">
+							<li class="nav-item col-12 col-lg-4 no-padding text-lg-center">
 								<a class="nav-link" href="#">Related Incidents</a>
-							</li>
-							<li class="nav-item col-12 col-lg-3 no-padding text-lg-center">
-								<a class="nav-link" href="#">Close Call</a>
 							</li>
 						</div>
 					</nav>
 				</div>
 			</div>
-
 		</div>
 
 		<div class="row">
-
-			<div class="col-12 col-sm-12 col-md-12 col-lg-6 margin card-group">
-				<div class="card col-12">
-					<div class="card-block">
-						<h5 class="card-title">Priority</h5>
-						<p class="card-text">
-							{{callDetail.slots.Priority}}
-						</p>
-						<h5 class="card-title">Emergency</h5>
-						<p class="card-text">
-							{{callDetail.slots.Emergency}}
-						</p>
-						<h5 class="card-title">Call Duration</h5>
-						<p class="card-text">
-							{{callDetail.startTime}} - {{callDetail.endTime}}
-						</p>
-						<h5 class="card-title hidden-lg-up">Call Start Time</h5>
-						<p class="card-text hidden-lg-up">
-							{{callDetail.startTime}}
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-12 col-sm-12 col-md-12 col-lg-6 margin card-group">
-				<div class="card col-12">
-					<div class="card-block">
-						<h5 class="card-title">Caller Name</h5>
+			<div class="col-12">
+				<div class="">
+					<div class="card col-12">
+						<div class="row no-bottom-margin">
+							<div class="small-card-block col-12 col-md-6 col-lg-4">
+								<h5 class="card-title">Priority</h5>
+								<p class="card-text">
+									{{callDetail.slots.Priority}}
+								</p>
+							</div>
+							<div class="small-card-block col-12 col-md-6 col-lg-4">
+								<h5 class="card-title">Call Duration</h5>
+								<p class="card-text">
+									{{callDetail.startTime}} - {{callDetail.endTime}}
+								</p>
+							</div>
+							<div class="small-card-block col-12 col-md-6 col-lg-4">
+								<h5 class="card-title">Call Start Time</h5>
+								<p class="card-text">
+									{{callDetail.startTime}}
+								</p>
+							</div>
+						</div>
+						<div class="row no-bottom-margin">
+							<div class="small-card-block col-12 col-md-6 col-lg-4">
+									<h5 class="card-title">Emergency</h5>
 									<p class="card-text">
-										{{callDetail.slots.FirstName}} {{callDetail.lastName}}
+										{{callDetail.slots.EmergencyType}}
 									</p>
+							</div>
+							<div class="small-card-block col-12 col-md-6 col-lg-4">
+									<h5 class="card-title">Caller Name</h5>
+									<p class="card-text">
+										{{callDetail.slots.Name}}
+									</p>
+							</div>
+							<div class="small-card-block col-12 col-md-6 col-lg-4">
 									<h5 class="card-title">Phone Number</h5>
 									<p class="card-text">
 										{{callDetail.slots.Phone}}
 									</p>
-									<h5 class="card-title hidden-md-down">Call Start Time</h5>
-									<p class="card-text hidden-md-down">
-										{{callDetail.startTime}}
+							</div>
+						</div>
+						<div class="row no-bottom-margin">
+							<div class="small-card-block col-12">
+									<h5 class="card-title">Emergency Description</h5>
+									<p class="card-text">
+										{{callDetail.slots.EmergencyDescription}}
 									</p>
+							</div>
+						</div>
 					</div>
-				</div>
 			</div>
-
 		</div>
+	</div>
 
-		<div class="row">
+	<div class="row card-deck">
 
-			<div class="col-12 col-sm-12 col-md-12 col-lg-6 margin card-group">
-				<div class="card col-12">
-					<div class="card-block">
+			<div class="col-12 col-lg-6 card-deck">
+				<div class="card margin">
+					<div class="small-card-block">
 						<h5 class="card-title">Location</h5>
 						<p class="card-text">
 							{{callDetail.locationSpecific}} {{callDetail.locationCity}}, {{callDetail.locationState}}
@@ -106,9 +194,9 @@
 				</div>
 			</div>
 
-			<div class="col-12 col-sm-12 col-md-12 col-lg-6 margin card-group">
-				<div class="card col-12">
-					<div class="card-block">
+			<div class="col-12 col-lg-6 card-deck">
+				<div class="card margin">
+					<div class="small-card-block">
 						<h5 class="card-title">Transcript</h5>
 						<p class="card-text">
 							{{callDetail.slots.Transcript}}

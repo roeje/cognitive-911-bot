@@ -5,13 +5,12 @@ const mongoose = require('mongoose');
 const _callSchema = {
 
    dialogAction: {
-      groupID: {type: Number, default: null},
-      closed: {type: Boolean, default: false},
       slots: {
-         FirstName: {type: String},
+         Name: {type: String},
          Location: {type: String},
          Phone: {type: String},
-         Emergency: {type: String}
+         EmergencyType: {type: String},
+         EmergencyDetails: {type: String}
       },
       type: {type: String, default: ""},
       firstName: {type: String, default: "John"},
@@ -27,7 +26,8 @@ const _callSchema = {
       locationLong: {type: String, default: ""}
    },
    sessionAttributes: {
-      Price: {type: Number, default: 25}
+      PriorityValue: {type: Number, default: null},
+      DuplicationKeywords: {type: Array, default: []}
    }
 }
 
