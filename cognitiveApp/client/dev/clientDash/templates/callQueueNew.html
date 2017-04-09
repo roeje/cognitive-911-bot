@@ -11,7 +11,12 @@
 		app.controller("callers", function($scope, $window) {
 		});
 	</script>
+	
 	<script>
+		$( document ).ready(function() {
+				$(".border-colored").addClass("priority1");
+				$(".priority-block").addClass("priority1-background");
+		});
 	</script>
 	<style>
 		body {
@@ -195,14 +200,14 @@
 		</div>
 
 		<!-- This element is the repeating element of the queue items -->
-		<div class="queue-row row">
+<div class="queue-row row">
 			<div class="col-12">
 				<div class="col-12">
 					<div class="row card-group no-bottom-margin">
-						<div class="col-12 card priority-block border-colored rounded-top closed closed-background">
+						<div class="col-12 card priority-block border-colored rounded-top">
 							<p></p>
 						</div>
-						<div class="col-12 col-sm-12 card border-colored closed">
+						<div class="col-12 col-sm-12 card border-colored">
 							<div class="row">
 								<div class="col-12 col-sm-6 col-md-3">
 									<h5 class="card-title">Emergency</h5>
