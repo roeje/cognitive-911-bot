@@ -20,7 +20,7 @@ callSchema.statics.getAllCalls = () => {
 
 callSchema.statics.getClosedCalls = () => {
     return new Promise((resolve, reject) => {
-        let _query = {dialogAction.closed: true};
+        let _query = {"dialogAction.closed": true};
 
         Call
           .find(_query)
@@ -47,7 +47,7 @@ callSchema.statics.getCall = (id) => {
 
 callSchema.statics.getCallsByGroup = (group) => {
    return new Promise((resolve, reject) => {
-      let _query = {dialogAction.groupID: group};
+      let _query = {"dialogAction.groupID": group};
 
       Call
          .find(_query)

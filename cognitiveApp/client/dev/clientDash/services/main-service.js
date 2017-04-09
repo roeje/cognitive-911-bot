@@ -43,6 +43,15 @@
                   deferred.resolve(data);
                });
                return deferred.promise;
+            },
+
+            closeCallDetail : function(id) {
+               var deferred = $q.defer();
+               $http.get('/api/close-call/' + id).success(function(data) {
+                  console.log(data);
+                  deferred.resolve(data);
+               });
+               return deferred.promise;
             }
    		}
    	});
