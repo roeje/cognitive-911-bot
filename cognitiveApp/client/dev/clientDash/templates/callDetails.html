@@ -101,16 +101,16 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="card no-border">
-					<nav class="nav nav-pills">
+					<nav class="nav nav-pills" id="navigationTabs">
 						<div class="row no-margin col-12 no-padding">
 							<li class="nav-item col-12 col-lg-4 no-padding text-lg-center">
-								<a class="nav-link active" data-toggle="tab"  href="#details">Call Details</a>
+								<a class="nav-link active" data-toggle="tab"  href="#details" role="tab">Call Details</a>
 							</li>
 							<li class="nav-item col-12 col-lg-4 no-padding text-lg-center">
-								<a class="nav-link" data-toggle="tab"  href="#previous">Previous Calls</a>
+								<a class="nav-link" data-toggle="tab"  href="#previous" role="tab">Previous Calls</a>
 							</li>
 							<li class="nav-item col-12 col-lg-4 no-padding text-lg-center">
-								<a class="nav-link" data-toggle="tab"  href="#related">Related Incidents</a>
+								<a class="nav-link" data-toggle="tab"  href="#related" role="tab">Related Incidents</a>
 							</li>
 						</div>
 					</nav>
@@ -246,13 +246,13 @@
 								<div class="margin">
 									<h5 class="card-title">Emergency</h5>
 									<p class="card-text">
-										{{callDetail.slots.Emergency}}
+										{{callDetail.slots.EmergencyType}}
 									</p>
 								</div>
 								<div class="margin">
 									<h5 class="card-title">Caller Name</h5>
 									<p class="card-text">
-										{{callDetail.slots.FirstName}} {{callDetail.lastName}}
+										{{callDetail.slots.Name}}
 									</p>
 								</div>
 								<div class="margin">
@@ -320,15 +320,15 @@
 															<div class="col-12 col-md-6">
 																<h5 class="card-title margin">Emergency</h5>
 																<p class="card-text">
-																	Traffic Accident
-																	<!-- {{callDetail.slots.Emergency}} -->
+																	<!-- Traffic Accident -->
+																	{{groupElement.dialogAction.slots.EmergencyType}}
 																</p>
 															</div>
 															<div class="col-12 col-md-6">
 																<h5 class="card-title margin">Call Duration</h5>
 																<p class="card-text">
-																	10m 32s
-																	<!--{{caller.dialogAction.endTime}}-{{caller.dialogAction.startTime}} -->
+																	<!-- 10m 32s -->
+																	{{groupElement.dialogAction.endTime}}-{{groupElement.dialogAction.startTime}}
 																</p>
 															</div>
 															<div class="col-12 col-md-6">
@@ -348,7 +348,7 @@
 																<div class="tile">
 																	<h5 class="card-title margin">Incident</h5>
 																	<p class="card-text">
-																		##
+																		{{callDetailGroup.length}}
 																	</p>
 																</div>
 															</div>
@@ -366,165 +366,163 @@
 				</div>
 			</div>
 
+			<!-- End Previous Tab -->
 
-		</div>
-
-		<!-- End Previous Tab -->
-
-		<!-- Start Related Tab -->
-		<div class="tab-pane" id="related" role="tabpanel">
-			<div class="row">
-				<div class="col-12 col-lg-6  card-deck margin ">
-					<div class="card ">
-						<div class="card-header text-center">
-							<h5> Call Details </h5>
-						</div>
-						<div class="small-card-block">
-						<div class="small-card-block">
-							<div class="margin">
-								<h5 class="card-title">Priority</h5>
+			<!-- Start Related Tab -->
+			<div class="tab-pane" id="related" role="tabpanel">
+				<div class="row">
+					<div class="col-12 col-lg-6  card-deck margin ">
+						<div class="card ">
+							<div class="card-header text-center">
+								<h5> Call Details </h5>
+							</div>
+							<div class="small-card-block">
+							<div class="small-card-block">
+								<div class="margin">
+									<h5 class="card-title">Priority</h5>
+									<p class="card-text">
+										{{callDetail.slots.Priority}}
+									</p>
+								</div>
+								<div class="margin">
+									<h5 class="card-title">Call Duration</h5>
+									<p class="card-text">
+										{{callDetail.startTime}} - {{callDetail.endTime}}
+									</p>
+								</div>
+								<div class="margin">
+									<h5 class="card-title">Call Start Time</h5>
+									<p class="card-text">
+										{{callDetail.startTime}}
+									</p>
+								</div>
+								<div class="margin">
+									<h5 class="card-title">Emergency</h5>
+									<p class="card-text">
+										{{callDetail.slots.Emergency}}
+									</p>
+								</div>
+								<div class="margin">
+									<h5 class="card-title">Caller Name</h5>
+									<p class="card-text">
+										{{callDetail.slots.FirstName}} {{callDetail.lastName}}
+									</p>
+								</div>
+								<div class="margin">
+									<h5 class="card-title">Phone Number</h5>
+									<p class="card-text">
+										{{callDetail.slots.Phone}}
+									</p>
+								</div>
+							</div>
+							<div class="small-card-block">
+								<h5 class="card-title">Emergency Description</h5>
 								<p class="card-text">
-									{{callDetail.slots.Priority}}
+									{{callDetail.slots.EmergencyDescription}}
 								</p>
 							</div>
-							<div class="margin">
-								<h5 class="card-title">Call Duration</h5>
+							<div class="small-card-block">
+								<h5 class="card-title">Location</h5>
 								<p class="card-text">
-									{{callDetail.startTime}} - {{callDetail.endTime}}
+									{{callDetail.locationSpecific}} {{callDetail.locationCity}}, {{callDetail.locationState}}
+								</p>
+								<p class="card-text">
+									Latitude, Longitude: {{callDetail.locationLat}}, {{callDetail.locationLong}}
+								</p>
+								<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDpK2IO0V5MZqBn9CUaseMZDHOpZnSxBwY
+									&q=Mackinac+Hall,Allendale+MI" allowfullscreen>
+								</iframe>
+							</div>
+							<div class="small-card-block">
+								<h5 class="card-title">Transcript</h5>
+								<p class="card-text">
+									{{callDetail.slots.Transcript}}
 								</p>
 							</div>
-							<div class="margin">
-								<h5 class="card-title">Call Start Time</h5>
-								<p class="card-text">
-									{{callDetail.startTime}}
-								</p>
 							</div>
-							<div class="margin">
-								<h5 class="card-title">Emergency</h5>
-								<p class="card-text">
-									{{callDetail.slots.Emergency}}
-								</p>
-							</div>
-							<div class="margin">
-								<h5 class="card-title">Caller Name</h5>
-								<p class="card-text">
-									{{callDetail.slots.FirstName}} {{callDetail.lastName}}
-								</p>
-							</div>
-							<div class="margin">
-								<h5 class="card-title">Phone Number</h5>
-								<p class="card-text">
-									{{callDetail.slots.Phone}}
-								</p>
-							</div>
-						</div>
-						<div class="small-card-block">
-							<h5 class="card-title">Emergency Description</h5>
-							<p class="card-text">
-								{{callDetail.slots.EmergencyDescription}}
-							</p>
-						</div>
-						<div class="small-card-block">
-							<h5 class="card-title">Location</h5>
-							<p class="card-text">
-								{{callDetail.locationSpecific}} {{callDetail.locationCity}}, {{callDetail.locationState}}
-							</p>
-							<p class="card-text">
-								Latitude, Longitude: {{callDetail.locationLat}}, {{callDetail.locationLong}}
-							</p>
-							<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDpK2IO0V5MZqBn9CUaseMZDHOpZnSxBwY
-								&q=Mackinac+Hall,Allendale+MI" allowfullscreen>
-							</iframe>
-						</div>
-						<div class="small-card-block">
-							<h5 class="card-title">Transcript</h5>
-							<p class="card-text">
-								{{callDetail.slots.Transcript}}
-							</p>
-						</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="col-12 col-lg-6 ">
-					<div class="card">
-						<div class="card-header text-center">
-							<h5>Related Calls</h5>
-						</div>
-						<div class="small-card-block">
-							<div class="groupheader card">
-								<div class="card-header text-center">
-									<h5> Related Incidents </h5>
-								</div>
-								<div class="card-block small-card-block">
-									<!-- Insert the <div class="queue-row row"> of each incident in the group -->
-
-								</div>
+					<div class="col-12 col-lg-6 ">
+						<div class="card">
+							<div class="card-header text-center">
+								<h5>Related Calls</h5>
 							</div>
+							<div class="small-card-block">
+								<div class="groupheader card">
+									<div class="card-header text-center">
+										<h5> Related Incidents </h5>
+									</div>
+									<div class="card-block small-card-block">
+										<!-- Insert the <div class="queue-row row"> of each incident in the group -->
+
+									</div>
+								</div>
 
 
-							<div class="queue-row">
-								<div class="col-12">
-										<div class="row no-bottom-margin card-deck">
-											<div class="col-12 card priority-block border-colored rounded-top">
-												<p></p>
+								<div class="queue-row" ng-repeat="groupElement in callDetailGroup">
+									<div class="col-12">
+											<div class="row no-bottom-margin card-deck">
+												<div class="col-12 card priority-block border-colored rounded-top">
+													<p></p>
+												</div>
 											</div>
-										</div>
-										<div class="row no-bottom-margin card-deck">
-											<div class="card border-colored">
-												<div class="small-card-block">
-													<div class="row">
-														<div class="col-12 col-md-6">
-															<h5 class="card-title margin">Emergency</h5>
-															<p class="card-text">
-																Traffic Accident
-																<!-- {{callDetail.slots.Emergency}} -->
-															</p>
-														</div>
-														<div class="col-12 col-md-6">
-															<h5 class="card-title margin">Call Duration</h5>
-															<p class="card-text">
-																10m 32s
-																<!--{{caller.dialogAction.endTime}}-{{caller.dialogAction.startTime}} -->
-															</p>
-														</div>
-														<div class="col-12 col-md-6">
-															<h5 class="card-title margin">Caller Role</h5>
-															<p class="card-text">
-																Victim
-																<!--{{caller.dialogAction.callerRole}} -->
-															</p>
-														</div>
-														<div class="col-12 col-md-6 d-flex flex-column flex-sm-row">
-															<div class="tile pr-3">
-																<h5 class="card-title margin">Previous</h5>
+											<div class="row no-bottom-margin card-deck">
+												<div class="card border-colored">
+													<div class="small-card-block">
+														<div class="row">
+															<div class="col-12 col-md-6">
+																<h5 class="card-title margin">Emergency</h5>
 																<p class="card-text">
-																	##
+																	<!-- Traffic Accident -->
+																	{{groupElement.dialogAction.slots.EmergencyType}}
 																</p>
 															</div>
-															<div class="tile">
-																<h5 class="card-title margin">Incident</h5>
+															<div class="col-12 col-md-6">
+																<h5 class="card-title margin">Call Duration</h5>
 																<p class="card-text">
-																	##
+																	<!-- 10m 32s -->
+																	{{groupElement.dialogAction.endTime}}-{{groupElement.dialogAction.startTime}}
 																</p>
+															</div>
+															<div class="col-12 col-md-6">
+																<h5 class="card-title margin">Caller Role</h5>
+																<p class="card-text">
+																	Victim
+																	<!--{{caller.dialogAction.callerRole}} -->
+																</p>
+															</div>
+															<div class="col-12 col-md-6 d-flex flex-column flex-sm-row">
+																<div class="tile pr-3">
+																	<h5 class="card-title margin">Previous</h5>
+																	<p class="card-text">
+																		##
+																	</p>
+																</div>
+																<div class="tile">
+																	<h5 class="card-title margin">Incident</h5>
+																	<p class="card-text">
+																	 	{{groupElement.length}}
+																	</p>
+																</div>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-										</div>
 
+									</div>
 								</div>
 							</div>
 						</div>
+
+
 					</div>
 
-
 				</div>
-
 			</div>
+			<!-- End Related Tab -->
 		</div>
-		<!-- End Related Tab -->
 
 	</div>
 </div>
