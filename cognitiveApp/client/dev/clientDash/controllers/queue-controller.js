@@ -32,6 +32,19 @@
          }
          $scope.getCallGroupData();
 
+         $scope.getClosedCallData = function() {
+            MainService.getClosedCalls().then(function(calls){
+               console.log("Closed Calls");
+               console.log(calls);
+               $scope.closedCalls = calls;
+
+            }, function(data) {
+         		console.log("No closed calls");
+         		$scope.closedCalls = [];
+         	});
+         }
+         $scope.getClosedCallData();
+
          $interval(function() {$scope.getCallData()}, 5000);
 
          $scope.callerList = [

@@ -27,6 +27,7 @@ const _callSchema = {
    },
    sessionAttributes: {
       PriorityValue: {type: Number, default: null},
+      closed: {type: Boolean, default: false},
       DuplicationKeywords: {type: Array, default: []}
    }
 }

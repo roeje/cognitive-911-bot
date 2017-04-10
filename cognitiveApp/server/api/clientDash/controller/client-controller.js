@@ -48,6 +48,37 @@ module.exports = class ClientController {
          .catch(error => res.status(400).json(error));
    }
 
+   static getGroupForCall(req, res) {
+      let _id = req.params.id;
+      ClientDAO
+         .getAllCalls()
+         .then(function(calls){
+            var used = [];
+            var group = [];
+            _.each(calls, function(call) {
+               if (call._id == _id) {
+                  used.push(call._id);
+                  _.each(calls, function(c){
+                     // console.log(_.contains(used, c._id));
+                     if (!_.contains(used, c._id)) {
+                        // var time_one = moment(call.createdAt);
+                        // var time_two = moment(c.createAt);
+                        // var within_15 = (time_one.add(15, 'm').isBefore(time_two) && time_one.subtract(15, 'm').is)
+                        var match = _.intersection(call.sessionAttributes.DuplicationKeywords, c.sessionAttributes.DuplicationKeywords);
+                        console.log(match.length);
+                        if (match.length >= 2) {
+                           group.push(c);
+                           used.push(c._id);
+                        }
+                     }
+                  });
+               }
+            });
+            res.status(200).json(group)
+         })
+         .catch(error => res.status(400).json(error));
+   }
+
    static getClosedCalls(req, res) {
       ClientDAO
          .getClosedCalls()

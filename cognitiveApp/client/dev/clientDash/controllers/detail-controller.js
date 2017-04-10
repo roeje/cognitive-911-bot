@@ -22,6 +22,15 @@
             console.log("No data loaded for class details");
             $scope.callDetail = "None";
          });
+
+         MainService.getCallDetailGroup(id).then(function(data) {
+            console.log("Call Group");
+            console.log(data);
+            $scope.callDetailGroup = data;
+         }, function(data) {
+            console.log("No data loaded for call group");
+            $scope.callDetailGroup = "None";
+         });
       	// var moment = $window.moment;
       	// var updatedServiceList = [];
          //

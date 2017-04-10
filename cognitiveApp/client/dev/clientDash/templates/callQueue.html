@@ -1,4 +1,3 @@
-
 <style>
    body {
       background-color: #1D1C19;
@@ -138,101 +137,240 @@
    }
 </style>
 
-
 <div class="container-fluid">
-  <div class="app-panel transition">
+   <div class="app-panel transition">
 
-    <ng-include src="'clientDash/templates/navbar.html'"></ng-include>
+      <ng-include src="'clientDash/templates/navbar.html'"></ng-include>
 
-		<div class="row">
-			<div class="col-12">
-				<div class="card bg-primary">
-					<div class="card-block">
-						<h4 class="display-4 text-center text-white">911 Caller Queue</h4>
-					</div>
-				</div>
-			</div>
-		</div>
+      <div class="row">
+         <div class="col-12">
+            <div class="card bg-primary">
+               <div class="card-block">
+                  <h4 class="display-4 text-center text-white">911 Caller Queue</h4>
+               </div>
+            </div>
+         </div>
+      </div>
 
-		<div class="row">
-			<div class="col-12">
-				<div class="card no-border">
-					<nav class="nav nav-pills">
-						<div class="row no-margin col-12 no-padding">
-							<li class="nav-item col-12 col-lg-6 no-padding text-lg-center">
-								<a class="nav-link active" href="#">911 Call Queue</a>
-							</li>
-							<li class="nav-item col-12 col-lg-6 no-padding text-lg-center">
-								<a class="nav-link" href="#">Closed Calls</a>
-							</li>
-						</div>
-					</nav>
-				</div>
-			</div>
-		</div>
-
-		<div class="groupheader card">
-			<div class="card-header text-center">
-				<h5> Related Incidents </h5>
-			</div>
-			<div class="card-block small-card-block">
-				<!-- Insert the <div class="queue-row row"> of each incident in the group -->
-
-			</div>
-		</div>
-
-		<!-- This element is the repeating element of the queue items -->
-		<div class="queue-row row" ng-repeat="caller in activeCallGroups">
-			<div class="col-12">
-				<div class="col-12">
-					<div class="row card-group no-bottom-margin">
-						<div class="col-12 card priority-block border-colored rounded-top closed closed-background">
-							<p></p>
-						</div>
-						<div class="col-12 col-sm-12 card border-colored closed">
-							<div class="row">
-								<div class="col-12 col-sm-6 col-md-3">
-									<h5 class="card-title">Emergency</h5>
-									<p class="card-text">
-										<!-- Traffic Accident -->
-										{{caller.dialogAction.slots.EmergencyType}}
-									</p>
-								</div>
-								<div class="col-12 col-sm-6  col-md-3">
-									<h5 class="card-title">Call Duration</h5>
-									<p class="card-text">
-										<!-- 10m 32s -->
-										{{caller.dialogAction.endTime}}-{{caller.dialogAction.startTime}}
-									</p>
-								</div>
-								<div class="col-12 col-sm-6  col-md-3">
-									<h5 class="card-title">Caller Role</h5>
-									<p class="card-text">
-										Victim
-										<!--{{caller.dialogAction.callerRole}} -->
-									</p>
-								</div>
-								<div class="col-12 col-sm-6  col-md-3 d-flex flex-column flex-sm-row">
-										<div class="tile pr-3">
-											<h5 class="card-title">Previous</h5>
-											<p class="card-text">
-												##
-											</p>
-										</div>
-										<div class="tile">
-											<h5 class="card-title">Incident</h5>
-											<p class="card-text">
-												##
-											</p>
-										</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+      <div class="row">
+         <div class="col-12">
+            <div class="card no-border">
+               <nav class="nav nav-pills">
+                  <div class="row no-margin col-12 no-padding">
+                     <li class="nav-item col-12 col-lg-6 no-padding text-lg-center">
+                        <a class="nav-link active" data-toggle="tab" href="#activeCalls" role="tab">911 Call Queue</a>
+                     </li>
+                     <li class="nav-item col-12 col-lg-6 no-padding text-lg-center">
+                        <a class="nav-link" data-toggle="tab" href="#closedCalls" role="tab">Closed Calls</a>
+                     </li>
+                  </div>
+               </nav>
+            </div>
+         </div>
+      </div>
 
 
-	</div>
+      <div class="tab-content">
+         <!-- Start Active Calls Tab -->
+         <div class="tab-pane active" id="activeCalls" role="tabpanel">
+
+            <div ng-repeat="callGroup in activeCallGroups">
+
+               <div class="groupheader card" ng-if="callGroup.length > 1">
+                  <div class="card-header text-center">
+                     <h5> Related Incidents </h5>
+                  </div>
+                  <div class="card-block small-card-block">
+                     <!-- Insert the <div class="queue-row row"> of each incident in the group -->
+
+
+
+                     <!-- This element is the repeating element of the queue items -->
+                     <div class="queue-row row" ng-repeat="caller in callGroup">
+
+
+                        <div class="col-12">
+                           <div class="col-12">
+                              <div class="row card-group no-bottom-margin">
+                                 <div class="col-12 card priority-block border-colored rounded-top" ng-click="openDetails(caller._id)">
+                                    <p></p>
+                                 </div>
+                                 <div class="col-12 col-sm-12 card border-colored">
+                                    <div class="row">
+                                       <div class="col-12 col-sm-6 col-md-3">
+                                          <h5 class="card-title">Emergency</h5>
+                                          <p class="card-text">
+                                             <!-- Traffic Accident -->
+                                             {{caller.dialogAction.slots.EmergencyType}}
+                                          </p>
+                                       </div>
+                                       <div class="col-12 col-sm-6  col-md-3">
+                                          <h5 class="card-title">Call Duration</h5>
+                                          <p class="card-text">
+                                             <!-- 10m 32s -->
+                                             {{caller.dialogAction.endTime}}-{{caller.dialogAction.startTime}}
+                                          </p>
+                                       </div>
+                                       <div class="col-12 col-sm-6  col-md-3">
+                                          <h5 class="card-title">Caller Role</h5>
+                                          <p class="card-text">
+                                             Victim
+                                             <!--{{caller.dialogAction.callerRole}} -->
+                                          </p>
+                                       </div>
+                                       <div class="col-12 col-sm-6  col-md-3 d-flex flex-column flex-sm-row">
+                                             <div class="tile pr-3">
+                                                <h5 class="card-title">Previous</h5>
+                                                <p class="card-text">
+                                                   ##
+                                                </p>
+                                             </div>
+                                             <div class="tile">
+                                                <h5 class="card-title">Incident</h5>
+                                                <p class="card-text">
+                                                   {{callGroup.length}}
+                                                </p>
+                                             </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!--End Individual Call Block-->
+
+                  </div>
+               </div>
+
+               <!--End Call Group Block-->
+
+               <!-- Start Single Call Block -->
+               <div class="queue-row row" ng-repeat="caller in callGroup" ng-if="callGroup.length == 1">
+
+
+                  <div class="col-12">
+                     <div class="col-12">
+                        <div class="row card-group no-bottom-margin">
+                           <div class="col-12 card priority-block border-colored rounded-top" ng-click="openDetails(caller._id)">
+                              <p></p>
+                           </div>
+                           <div class="col-12 col-sm-12 card border-colored">
+                              <div class="row">
+                                 <div class="col-12 col-sm-6 col-md-3">
+                                    <h5 class="card-title">Emergency</h5>
+                                    <p class="card-text">
+                                       <!-- Traffic Accident -->
+                                       {{call.dialogAction.slots.EmergencyType}}
+                                    </p>
+                                 </div>
+                                 <div class="col-12 col-sm-6  col-md-3">
+                                    <h5 class="card-title">Call Duration</h5>
+                                    <p class="card-text">
+                                       <!-- 10m 32s -->
+                                       {{call.dialogAction.endTime}}-{{call.dialogAction.startTime}}
+                                    </p>
+                                 </div>
+                                 <div class="col-12 col-sm-6  col-md-3">
+                                    <h5 class="card-title">Caller Role</h5>
+                                    <p class="card-text">
+                                       Victim
+                                       <!--{{caller.dialogAction.callerRole}} -->
+                                    </p>
+                                 </div>
+                                 <div class="col-12 col-sm-6  col-md-3 d-flex flex-column flex-sm-row">
+                                       <div class="tile pr-3">
+                                          <h5 class="card-title">Previous</h5>
+                                          <p class="card-text">
+                                             ##
+                                          </p>
+                                       </div>
+                                       <div class="tile">
+                                          <h5 class="card-title">Incident</h5>
+                                          <p class="card-text">
+                                             0
+                                          </p>
+                                       </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Single Call Block -->
+
+            </div>
+         </div>
+         <!-- End Active Calls Tab -->
+
+         <!-- Start Closed Calls Tab -->
+         <div class="tab-pane" id="closedCalls" role="tabpanel">
+
+            <div class="queue-row row" ng-repeat="call in closedCalls">
+
+
+               <div class="col-12">
+                  <div class="col-12">
+                     <div class="row card-group no-bottom-margin">
+                        <div class="col-12 card priority-block border-colored rounded-top" ng-click="openDetails(caller._id)">
+                           <p></p>
+                        </div>
+                        <div class="col-12 col-sm-12 card border-colored">
+                           <div class="row">
+                              <div class="col-12 col-sm-6 col-md-3">
+                                 <h5 class="card-title">Emergency</h5>
+                                 <p class="card-text">
+                                    <!-- Traffic Accident -->
+                                    {{call.dialogAction.slots.EmergencyType}}
+                                 </p>
+                              </div>
+                              <div class="col-12 col-sm-6  col-md-3">
+                                 <h5 class="card-title">Call Duration</h5>
+                                 <p class="card-text">
+                                    <!-- 10m 32s -->
+                                    {{call.dialogAction.endTime}}-{{call.dialogAction.startTime}}
+                                 </p>
+                              </div>
+                              <div class="col-12 col-sm-6  col-md-3">
+                                 <h5 class="card-title">Caller Role</h5>
+                                 <p class="card-text">
+                                    Victim
+                                    <!--{{caller.dialogAction.callerRole}} -->
+                                 </p>
+                              </div>
+                              <div class="col-12 col-sm-6  col-md-3 d-flex flex-column flex-sm-row">
+                                    <div class="tile pr-3">
+                                       <h5 class="card-title">Previous</h5>
+                                       <p class="card-text">
+                                          ##
+                                       </p>
+                                    </div>
+                                    <div class="tile">
+                                       <h5 class="card-title">Incident</h5>
+                                       <p class="card-text">
+                                          0
+                                       </p>
+                                    </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+         <!-- End Closed Calls Tab -->
+
+      </div>
+
+   </div>
 </div>
+
+<script>
+   $( document ).ready(function() {
+         $(".border-colored").addClass("priority1");
+         $(".priority-block").addClass("priority1-background");
+   });
+</script>

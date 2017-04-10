@@ -12,12 +12,19 @@ module.exports = class ClientRoutes {
 
       router
          .route('/api/active-call-groups')
-         .get(ClientController.getAllCallGroups)
+         .get(ClientController.getAllCallGroups);
 
+      router
+         .route('/api/call-group/:id')
+         .get(ClientController.getGroupForCall);
 
       router
          .route('/api/group-calls/:groupID')
          .get(ClientController.getCallsByGroup);
+
+      router
+         .route('/api/closed-calls')
+         .get(ClientController.getClosedCalls);
 
       router
          .route('/api/create-call')

@@ -28,6 +28,14 @@
                return deferred.promise;
             },
 
+            getCallDetailGroup : function(id) {
+               var deferred = $q.defer();
+               $http.get('/api/call-group/' + id).success(function(data) {
+                  deferred.resolve(data);
+               });
+               return deferred.promise;
+            },
+
             getActiveCalls : function() {
                var deferred = $q.defer();
    				$http.get('/api/active-calls').success(function(data) {
@@ -39,6 +47,14 @@
             getActiveCallGroups : function() {
                var deferred = $q.defer();
    				$http.get('/api/active-call-groups').success(function(data) {
+   					deferred.resolve(data);
+   				});
+   				return deferred.promise;
+            },
+
+            getClosedCalls : function() {
+               var deferred = $q.defer();
+   				$http.get('/api/closed-calls').success(function(data) {
    					deferred.resolve(data);
    				});
    				return deferred.promise;
