@@ -137,7 +137,7 @@
    }
 </style>
 
-<div class="container-fluid">
+<div class="container-fluid" ng-cloak>
    <div class="app-panel transition">
 
       <ng-include src="'clientDash/templates/navbar.html'"></ng-include>
@@ -155,15 +155,15 @@
       <div class="row">
          <div class="col-12">
             <div class="card no-border">
-               <nav class="nav nav-pills">
-                  <div class="row no-margin col-12 no-padding">
+               <nav class="nav nav-pills nav-justified">
+
                      <li class="nav-item col-12 col-lg-6 no-padding text-lg-center">
                         <a class="nav-link active" data-toggle="tab" href="#activeCalls" role="tab">911 Call Queue</a>
                      </li>
-                     <li class="nav-item col-12 col-lg-6 no-padding text-lg-center">
+                     <li class="nav-item col-12 col-lg-6 no-padding text-lg-center" ng-show="closedCalls.length > 0">
                         <a class="nav-link" data-toggle="tab" href="#closedCalls" role="tab">Closed Calls</a>
                      </li>
-                  </div>
+
                </nav>
             </div>
          </div>
@@ -246,13 +246,13 @@
                <!--End Call Group Block-->
 
                <!-- Start Single Call Block -->
-               <div class="queue-row row" ng-repeat="caller in callGroup" ng-if="callGroup.length == 1">
+               <div class="queue-row row" ng-repeat="call in callGroup" ng-if="callGroup.length == 1">
 
 
                   <div class="col-12">
                      <div class="col-12">
                         <div class="row card-group no-bottom-margin">
-                           <div class="col-12 card priority-block border-colored rounded-top" ng-click="openDetails(caller._id)">
+                           <div class="col-12 card priority-block border-colored rounded-top" ng-click="openDetails(call._id)">
                               <p></p>
                            </div>
                            <div class="col-12 col-sm-12 card border-colored">

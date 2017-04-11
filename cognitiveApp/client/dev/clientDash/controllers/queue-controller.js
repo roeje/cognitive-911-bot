@@ -45,7 +45,11 @@
          }
          $scope.getClosedCallData();
 
-         $interval(function() {$scope.getCallData()}, 5000);
+         $interval(function() {
+            $scope.getCallData();
+            $scope.getCallGroupData();
+            $scope.getClosedCallData();
+         }, 10000);
 
          $scope.callerList = [
             {callerId:0, callStartTime:'15:37', callElapsedTime: '3 minutes', phoneNum:'616-555-5134 ', callerName:'Jane Doe',

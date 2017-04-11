@@ -75,7 +75,7 @@
 	});
 </script>
 
-<div class="container-fluid">
+<div class="container-fluid" ng-cloak>
 	<ng-include src="'clientDash/templates/navbar.html'"></ng-include>
 
 	<div class="app-panel transition">
@@ -101,18 +101,18 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="card no-border">
-					<nav class="nav nav-pills" id="navigationTabs">
-						<div class="row no-margin col-12 no-padding">
-							<li class="nav-item col-12 col-lg-4 no-padding text-lg-center">
+					<nav class="nav nav-pills nav-justified">
+
+							<li class="nav-item text-lg-center">
 								<a class="nav-link active" data-toggle="tab"  href="#details" role="tab">Call Details</a>
 							</li>
-							<li class="nav-item col-12 col-lg-4 no-padding text-lg-center">
+							<li class="nav-item text-lg-center" ng-show="callPreviousCalls.length > 0">
 								<a class="nav-link" data-toggle="tab"  href="#previous" role="tab">Previous Calls</a>
 							</li>
-							<li class="nav-item col-12 col-lg-4 no-padding text-lg-center">
+							<li class="nav-item text-lg-center" ng-show="callDetailGroup.length > 0">
 								<a class="nav-link" data-toggle="tab"  href="#related" role="tab">Related Incidents</a>
 							</li>
-						</div>
+
 					</nav>
 				</div>
 			</div>
