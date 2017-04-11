@@ -45,6 +45,21 @@ callSchema.statics.getCall = (id) => {
    });
 }
 
+callSchema.statics.getCallsByNumber = (number) => {
+   return new Promise((resolve, reject) => {
+      let _query = {"dialogAction.slots.Phone": number};
+      if (!_.isString(number))
+         return reject(new TypeError('Phone is not a valid string.'));
+
+      Call
+         .find(_query)
+         .exec((err, call) => {
+            err ? reject(err)
+               : resolve(call);
+         });
+   });
+}
+
 callSchema.statics.getCallsByGroup = (group) => {
    return new Promise((resolve, reject) => {
       let _query = {"dialogAction.groupID": group, "sessionAttributes.closed": false};

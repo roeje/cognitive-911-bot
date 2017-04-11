@@ -18,6 +18,14 @@
          MainService.getCallDetail(id).then(function(data) {
             console.log(data);
             $scope.callDetail = data.dialogAction;
+            MainService.getCallsByNumber($scope.callDetail.slots.Phone).then(function(data) {
+               console.log("Previous Calls");
+               console.log(data);
+               $scope.callPreviousCalls = data;
+            }, function(data) {
+               console.log("No data loaded for previous calls");
+               $scope.callDetailGroup = "None";
+            });
          }, function(data) {
             console.log("No data loaded for class details");
             $scope.callDetail = "None";
@@ -31,6 +39,8 @@
             console.log("No data loaded for call group");
             $scope.callDetailGroup = "None";
          });
+
+
       	// var moment = $window.moment;
       	// var updatedServiceList = [];
          //

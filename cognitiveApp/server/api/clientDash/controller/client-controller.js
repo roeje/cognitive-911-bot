@@ -94,6 +94,14 @@ module.exports = class ClientController {
          .catch(error => res.status(400).json(error));
    }
 
+   static getCallsByNumber(req, res) {
+      let _number = req.params.number
+      ClientDAO
+         .getCallsByNumber(_number)
+         .then(calls => res.status(200).json(calls))
+         .catch(error => res.status(400).json(error));
+   }
+
    static getCall(req, res) {
       let _id = req.params.id;
       ClientDAO

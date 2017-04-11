@@ -296,17 +296,8 @@
 								<h5>Previous Calls</h5>
 							</div>
 							<div class="small-card-block">
-								<div class="groupheader card">
-									<div class="card-header text-center">
-										<h5> Related Incidents </h5>
-									</div>
-									<div class="card-block small-card-block">
-										<!-- Insert the <div class="queue-row row"> of each incident in the group -->
 
-									</div>
-								</div>
-
-								<div class="queue-row">
+								<div class="queue-row" ng-repeat="pCall in callPreviousCalls">
 									<div class="col-12">
 											<div class="row no-bottom-margin card-deck">
 												<div class="col-12 card priority-block border-colored rounded-top">
@@ -321,14 +312,14 @@
 																<h5 class="card-title margin">Emergency</h5>
 																<p class="card-text">
 																	<!-- Traffic Accident -->
-																	{{groupElement.dialogAction.slots.EmergencyType}}
+																	{{pCall.dialogAction.slots.EmergencyType}}
 																</p>
 															</div>
 															<div class="col-12 col-md-6">
 																<h5 class="card-title margin">Call Duration</h5>
 																<p class="card-text">
 																	<!-- 10m 32s -->
-																	{{groupElement.dialogAction.endTime}}-{{groupElement.dialogAction.startTime}}
+																	{{pCall.dialogAction.endTime}}-{{pCall.dialogAction.startTime}}
 																</p>
 															</div>
 															<div class="col-12 col-md-6">
@@ -348,7 +339,7 @@
 																<div class="tile">
 																	<h5 class="card-title margin">Incident</h5>
 																	<p class="card-text">
-																		{{callDetailGroup.length}}
+																		{{callPreviousCalls.length}}
 																	</p>
 																</div>
 															</div>
@@ -449,73 +440,66 @@
 								<h5>Related Calls</h5>
 							</div>
 							<div class="small-card-block">
-								<div class="groupheader card">
-									<div class="card-header text-center">
-										<h5> Related Incidents </h5>
-									</div>
-									<div class="card-block small-card-block">
-										<!-- Insert the <div class="queue-row row"> of each incident in the group -->
 
-									</div>
-								</div>
-
-
+								<!-- Call Group Elements -->
 								<div class="queue-row" ng-repeat="groupElement in callDetailGroup">
 									<div class="col-12">
-											<div class="row no-bottom-margin card-deck">
-												<div class="col-12 card priority-block border-colored rounded-top">
-													<p></p>
-												</div>
+										<div class="row no-bottom-margin card-deck">
+											<div class="col-12 card priority-block border-colored rounded-top">
+												<p></p>
 											</div>
-											<div class="row no-bottom-margin card-deck">
-												<div class="card border-colored">
-													<div class="small-card-block">
-														<div class="row">
-															<div class="col-12 col-md-6">
-																<h5 class="card-title margin">Emergency</h5>
+										</div>
+										<div class="row no-bottom-margin card-deck">
+											<div class="card border-colored">
+												<div class="small-card-block">
+													<div class="row">
+														<div class="col-12 col-md-6">
+															<h5 class="card-title margin">Emergency</h5>
+															<p class="card-text">
+																<!-- Traffic Accident -->
+																{{groupElement.dialogAction.slots.EmergencyType}}
+															</p>
+														</div>
+														<div class="col-12 col-md-6">
+															<h5 class="card-title margin">Call Duration</h5>
+															<p class="card-text">
+																<!-- 10m 32s -->
+																{{groupElement.dialogAction.endTime}}-{{groupElement.dialogAction.startTime}}
+															</p>
+														</div>
+														<div class="col-12 col-md-6">
+															<h5 class="card-title margin">Caller Role</h5>
+															<p class="card-text">
+																Victim
+																<!--{{caller.dialogAction.callerRole}} -->
+															</p>
+														</div>
+														<div class="col-12 col-md-6 d-flex flex-column flex-sm-row">
+															<div class="tile pr-3">
+																<h5 class="card-title margin">Previous</h5>
 																<p class="card-text">
-																	<!-- Traffic Accident -->
-																	{{groupElement.dialogAction.slots.EmergencyType}}
+																	##
 																</p>
 															</div>
-															<div class="col-12 col-md-6">
-																<h5 class="card-title margin">Call Duration</h5>
+															<div class="tile">
+																<h5 class="card-title margin">Incident</h5>
 																<p class="card-text">
-																	<!-- 10m 32s -->
-																	{{groupElement.dialogAction.endTime}}-{{groupElement.dialogAction.startTime}}
+																	{{groupElement.length}}
 																</p>
-															</div>
-															<div class="col-12 col-md-6">
-																<h5 class="card-title margin">Caller Role</h5>
-																<p class="card-text">
-																	Victim
-																	<!--{{caller.dialogAction.callerRole}} -->
-																</p>
-															</div>
-															<div class="col-12 col-md-6 d-flex flex-column flex-sm-row">
-																<div class="tile pr-3">
-																	<h5 class="card-title margin">Previous</h5>
-																	<p class="card-text">
-																		##
-																	</p>
-																</div>
-																<div class="tile">
-																	<h5 class="card-title margin">Incident</h5>
-																	<p class="card-text">
-																	 	{{groupElement.length}}
-																	</p>
-																</div>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-
+										</div>
 									</div>
 								</div>
+
+
+
+
 							</div>
 						</div>
-
 
 					</div>
 

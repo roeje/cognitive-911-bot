@@ -27,6 +27,10 @@ module.exports = class ClientRoutes {
          .get(ClientController.getClosedCalls);
 
       router
+         .route('/api/calls-by-number/:number')
+         .get(ClientController.getCallsByNumber);
+
+      router
          .route('/api/create-call')
          .post(ClientController.createCall);
 

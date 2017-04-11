@@ -52,6 +52,14 @@
    				return deferred.promise;
             },
 
+            getCallsByNumber : function(number) {
+               var deferred = $q.defer();
+   				$http.get('/api/calls-by-number/' + number).success(function(data) {
+   					deferred.resolve(data);
+   				});
+   				return deferred.promise;
+            },
+
             getClosedCalls : function() {
                var deferred = $q.defer();
    				$http.get('/api/closed-calls').success(function(data) {
