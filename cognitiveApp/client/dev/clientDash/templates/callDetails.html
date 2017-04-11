@@ -1,11 +1,11 @@
 
-<style>
-	body {
-		background-color: #1D1C19;
-		padding-top:2em;
-		padding-bottom:2em;
-	}
+<script>
+	$( document ).ready(function() {
+			$(".border-colored").addClass("priority1");
+	});
+</script>
 
+<style>
 	img {
 		object-fit: fill;
 		width: 5rem;
@@ -69,11 +69,88 @@
 	}
 </style>
 
-<script>
-	$( document ).ready(function() {
-			$(".border-colored").addClass("priority1");
-	});
-</script>
+<style>
+	.priority1 {
+		border-color: #FF0000; /* Red */
+	}
+
+	.priority1-background {
+		background-color: #FF0000;
+		border-color: #FF0000;
+	}
+
+	.priority2 {
+		border-color:#FF8040 ;  /* Orange */
+	}
+
+	.priority2-background {
+		background-color: #FF8040;
+		border-color:#FF8040;
+	}
+
+	.priority3 {
+		border-color: #FFFF00; /* Yellow */
+	}
+
+	.priority3-background {
+		background-color: #FFFF00;
+		border-color:#FFFF00;
+	}
+
+	.priority4 {
+		border-color: #00FF00; /* Green */
+	}
+
+	.priority4-background {
+		background-color: #00FF00;
+		border-color:#00FF00;
+	}
+
+	.priority5 {
+		border-color: #800080; /* Purple */
+	}
+
+	.priority5-background {
+		background-color: #800080;
+		border-color:#800080;
+	}
+
+	.priority6 {
+		border-color: #0000FF; /* Blue */
+	}
+
+	.priority6-background {
+		background-color: #0000FF;
+		border-color:#0000FF;
+	}
+
+	.closed {
+		border-color: #808080; /* Gray */
+	}
+
+	.closed-background {
+		background-color: #808080;
+		border-color:#808080;
+	}
+
+	.priority-block {
+		border-radius: .25rem .25rem 0 0;
+	}
+
+	@media (min-width: 576px) {
+		.border-colored {
+			border-radius: 0 .25rem .25rem 0;
+		}
+
+		.priority-block {
+			border-radius: .25rem 0 0 .25rem;
+		}
+
+		.tile {
+			width:50%;
+		}
+	}
+</style>
 
 <div class="container-fluid" ng-cloak>
 	<ng-include src="'clientDash/templates/navbar.html'"></ng-include>
@@ -299,8 +376,8 @@
 
 								<div class="queue-row" ng-repeat="pCall in callPreviousCalls">
 									<div class="col-12">
-											<div class="row no-bottom-margin card-deck">
-												<div class="col-12 card priority-block border-colored rounded-top">
+											<div class="row no-bottom-margin card-deck" style="padding-top:10px;">
+												<div class="col-12 card priority-block border-colored rounded-top" ng-click="openDetails(pCall._id)">
 													<p></p>
 												</div>
 											</div>
@@ -444,13 +521,13 @@
 								<!-- Call Group Elements -->
 								<div class="queue-row" ng-repeat="groupElement in callDetailGroup">
 									<div class="col-12">
-										<div class="row no-bottom-margin card-deck">
-											<div class="col-12 card priority-block border-colored rounded-top">
+										<div class="row no-bottom-margin card-deck ">
+											<div class="col-12 card priority-block border-colored rounded-top priority{{groupElement.sessionAttributes.PriorityValue}} priority{{groupElement.sessionAttributes.PriorityValue}}-background" ng-click="openDetails(groupElement._id)">
 												<p></p>
 											</div>
 										</div>
 										<div class="row no-bottom-margin card-deck">
-											<div class="card border-colored">
+											<div class="card border-colored priority{{groupElement.sessionAttributes.PriorityValue}}">
 												<div class="small-card-block">
 													<div class="row">
 														<div class="col-12 col-md-6">

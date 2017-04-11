@@ -49,7 +49,7 @@
             $scope.getCallData();
             $scope.getCallGroupData();
             $scope.getClosedCallData();
-         }, 10000);
+         }, 50000);
 
          $scope.callerList = [
             {callerId:0, callStartTime:'15:37', callElapsedTime: '3 minutes', phoneNum:'616-555-5134 ', callerName:'Jane Doe',

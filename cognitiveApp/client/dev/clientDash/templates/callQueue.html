@@ -1,9 +1,4 @@
 <style>
-   body {
-      background-color: #1D1C19;
-      padding-top:2em;
-      padding-bottom:2em;
-   }
 
    .app-panel {
       margin-left: 4%;
@@ -192,10 +187,10 @@
                         <div class="col-12">
                            <div class="col-12">
                               <div class="row card-group no-bottom-margin">
-                                 <div class="col-12 card priority-block border-colored rounded-top" ng-click="openDetails(caller._id)">
+                                 <div class="col-12 card priority-block border-colored rounded-top priority{{caller.sessionAttributes.PriorityValue}} priority{{caller.sessionAttributes.PriorityValue}}-background" ng-click="openDetails(caller._id)">
                                     <p></p>
                                  </div>
-                                 <div class="col-12 col-sm-12 card border-colored">
+                                 <div class="col-12 col-sm-12 card border-colored priority{{caller.sessionAttributes.PriorityValue}}">
                                     <div class="row">
                                        <div class="col-12 col-sm-6 col-md-3">
                                           <h5 class="card-title">Emergency</h5>
@@ -252,10 +247,10 @@
                   <div class="col-12">
                      <div class="col-12">
                         <div class="row card-group no-bottom-margin">
-                           <div class="col-12 card priority-block border-colored rounded-top" ng-click="openDetails(call._id)">
+                           <div class="col-12 card priority-block border-colored rounded-top priority{{call.sessionAttributes.PriorityValue}} priority{{call.sessionAttributes.PriorityValue}}-background" ng-click="openDetails(call._id)">
                               <p></p>
                            </div>
-                           <div class="col-12 col-sm-12 card border-colored">
+                           <div class="col-12 col-sm-12 card border-colored priority{{call.sessionAttributes.PriorityValue}}">
                               <div class="row">
                                  <div class="col-12 col-sm-6 col-md-3">
                                     <h5 class="card-title">Emergency</h5>
@@ -313,7 +308,7 @@
                <div class="col-12">
                   <div class="col-12">
                      <div class="row card-group no-bottom-margin">
-                        <div class="col-12 card priority-block border-colored rounded-top" ng-click="openDetails(caller._id)">
+                        <div class="col-12 card priority-block border-colored rounded-top" ng-click="openDetails(call._id)">
                            <p></p>
                         </div>
                         <div class="col-12 col-sm-12 card border-colored">

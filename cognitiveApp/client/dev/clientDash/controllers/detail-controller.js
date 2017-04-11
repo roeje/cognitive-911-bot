@@ -2,7 +2,7 @@
   'use strict';
    ng.module('cognitiveApp')
 
-      .controller('DetailController', function($scope, $rootScope, MainService, AuthService, $http, $window, _, $routeParams) {
+      .controller('DetailController', function($scope, $rootScope, MainService, AuthService, $http, $window, $location, _, $routeParams) {
          $scope.userInfo = AuthService.getUserInfo();
 
          $scope.testString = "Hello World";
@@ -39,6 +39,10 @@
             console.log("No data loaded for call group");
             $scope.callDetailGroup = "None";
          });
+
+         $scope.openDetails = function (callerId) {
+            $location.url('/detail/' + callerId);
+         };
 
 
       	// var moment = $window.moment;
