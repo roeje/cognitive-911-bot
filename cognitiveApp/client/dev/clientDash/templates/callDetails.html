@@ -318,9 +318,7 @@
 						<div class="card margin">
 							<div class="small-card-block">
 								<h5 class="card-title">Transcript</h5>
-								<p class="card-text">
-									{{callDetail.dialogAction.transcript}}
-								</p>
+								<p class="card-text" ng-bind-html="callDetail.sessionAttributes.CallTranscript | trust"></p>
 							</div>
 						</div>
 					</div>
@@ -397,9 +395,7 @@
 							</div>
 							<div class="small-card-block">
 								<h5 class="card-title">Transcript</h5>
-								<p class="card-text">
-									{{callDetail.slots.Transcript}}
-								</p>
+								<p class="card-text" ng-bind-html="callDetail.sessionAttributes.CallTranscript | trust"></p>
 							</div>
 							</div>
 						</div>
@@ -441,16 +437,16 @@
 																<h5 class="card-title margin">Caller Role</h5>
 																<p class="card-text">
 																	Victim
-																	<!--{{caller.dialogAction.callerRole}} -->
+																	{{caller.dialogAction.slots.CallerRole}}
 																</p>
 															</div>
 															<div class="col-12 col-md-6 d-flex flex-column flex-sm-row">
-																<div class="tile pr-3">
+																<!-- <div class="tile pr-3">
 																	<h5 class="card-title margin">Previous</h5>
 																	<p class="card-text">
 																		##
 																	</p>
-																</div>
+																</div> -->
 																<div class="tile">
 																	<h5 class="card-title margin">Incident</h5>
 																	<p class="card-text">
@@ -541,9 +537,7 @@
 							</div>
 							<div class="small-card-block">
 								<h5 class="card-title">Transcript</h5>
-								<p class="card-text">
-									{{callDetail.dialogAction.slots.Transcript}}
-								</p>
+								<p class="card-text" ng-bind-html="callDetail.sessionAttributes.CallTranscript | trust"></p>
 							</div>
 							</div>
 						</div>
@@ -585,8 +579,8 @@
 														<div class="col-12 col-md-6">
 															<h5 class="card-title margin">Caller Role</h5>
 															<p class="card-text">
-																Victim
-																<!--{{caller.dialogAction.callerRole}} -->
+																<!-- Victim -->
+																{{caller.dialogAction.slots.CallerRole}}
 															</p>
 														</div>
 														<div class="col-12 col-md-6 d-flex flex-column flex-sm-row">
