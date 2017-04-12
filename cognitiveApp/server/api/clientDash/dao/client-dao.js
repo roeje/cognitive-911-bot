@@ -11,6 +11,8 @@ callSchema.statics.getAllCalls = () => {
 
         Call
           .find(_query)
+          .sort({'sessionAttributes.PriorityValue': 1})
+          .sort({'createdAt': 1})
           .exec((err, calls) => {
               err ? reject(err)
                   : resolve(calls);
@@ -24,6 +26,8 @@ callSchema.statics.getClosedCalls = () => {
 
         Call
           .find(_query)
+          .sort({'sessionAttributes.PriorityValue': 1})
+          .sort({'createdAt': 1})
           .exec((err, calls) => {
               err ? reject(err)
                   : resolve(calls);
@@ -53,6 +57,8 @@ callSchema.statics.getCallsByNumber = (number) => {
 
       Call
          .find(_query)
+         .sort({'sessionAttributes.PriorityValue': 1})
+         .sort({'createdAt': 1})
          .exec((err, call) => {
             err ? reject(err)
                : resolve(call);
@@ -66,6 +72,8 @@ callSchema.statics.getCallsByGroup = (group) => {
 
       Call
          .find(_query)
+         .sort({'sessionAttributes.PriorityValue': 1})
+         .sort({'createdAt': 1})
          .exec((err, calls) => {
             err ? reject(err)
                : resolve(calls);
