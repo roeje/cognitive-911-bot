@@ -17,8 +17,8 @@
 
          MainService.getCallDetail(id).then(function(data) {
             console.log(data);
-            $scope.callDetail = data.dialogAction;
-            MainService.getCallsByNumber($scope.callDetail.slots.Phone).then(function(data) {
+            $scope.callDetail = data;
+            MainService.getCallsByNumber($scope.callDetail.dialogAction.slots.Phone).then(function(data) {
                console.log("Previous Calls");
                console.log(data);
                $scope.callPreviousCalls = data;
@@ -43,6 +43,11 @@
          $scope.openDetails = function (callerId) {
             $location.url('/detail/' + callerId);
          };
+
+         $scope.closeCall = function(callerId) {
+            MainService.closeCallDetail(callerId);
+            $location.url('/queue');
+         }
 
 
       	// var moment = $window.moment;

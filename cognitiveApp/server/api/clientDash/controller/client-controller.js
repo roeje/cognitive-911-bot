@@ -33,7 +33,6 @@ module.exports = class ClientController {
                         // var time_two = moment(c.createAt);
                         // var within_15 = (time_one.add(15, 'm').isBefore(time_two) && time_one.subtract(15, 'm').is)
                         var match = _.intersection(call.sessionAttributes.DuplicationKeywords, c.sessionAttributes.DuplicationKeywords);
-                        console.log(match.length);
                         if (match.length >= 2) {
                            new_group.push(c);
                            used.push(c._id);
@@ -43,6 +42,7 @@ module.exports = class ClientController {
                   groups.push(new_group);
                }
             });
+
             res.status(200).json(groups)
          })
          .catch(error => res.status(400).json(error));
@@ -65,7 +65,6 @@ module.exports = class ClientController {
                         // var time_two = moment(c.createAt);
                         // var within_15 = (time_one.add(15, 'm').isBefore(time_two) && time_one.subtract(15, 'm').is)
                         var match = _.intersection(call.sessionAttributes.DuplicationKeywords, c.sessionAttributes.DuplicationKeywords);
-                        console.log(match.length);
                         if (match.length >= 2) {
                            group.push(c);
                            used.push(c._id);
@@ -121,9 +120,9 @@ module.exports = class ClientController {
       _call.dialogAction.locationCity = 'Allendale';
       _call.dialogAction.locationState = "MI";
       _call.dialogAction.locationSpecific = 'Mackinac Hall';
-      _call.dialogAction.locationLat = '42.966732';
-      _call.dialogAction.locationLong = '-85.886891';
-      console.log(_call);
+      _call.dialogAction.locationLat = faker.Address.latitude();
+      _call.dialogAction.locationLong = faker.Address.longitude();
+      _call.dialogAction.transcript = faker.Lorem.paragraph();      
       ClientDAO
          .createCall(_call)
          .then(call => res.status(201).json(call))

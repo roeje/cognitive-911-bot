@@ -10,7 +10,8 @@ const _callSchema = {
          Location: {type: String},
          Phone: {type: String},
          EmergencyType: {type: String},
-         EmergencyDetails: {type: String}
+         EmergencyDetails: {type: String},
+         CallerRole: {type: String}
       },
       type: {type: String, default: ""},
       firstName: {type: String, default: "John"},
@@ -23,13 +24,15 @@ const _callSchema = {
       locationState: {type: String, default: ""},
       locationSpecific: {type: String, default: ""},
       locationLat: {type: String, default: ""},
-      locationLong: {type: String, default: ""}
+      locationLong: {type: String, default: ""},
+      transcript: {type: String, default: ""}
    },
    sessionAttributes: {
       PriorityValue: {type: Number, default: null},
       closed: {type: Boolean, default: false},
-      DuplicationKeywords: {type: Array, default: []}
-   }
+      DuplicationKeywords: {type: Array, default: []},
+      CallTranscript: {type: String, default: ""}
+   },
 }
 
 const _callSchemaOld = {

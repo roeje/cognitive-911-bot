@@ -22,7 +22,17 @@
          $scope.getCallGroupData = function() {
             MainService.getActiveCallGroups().then(function(groups){
                console.log("Call Groups");
+
+
+               _.each(groups, function(group){
+                  _.each(group, function(g) {
+                     MainService.getCallsByNumber(g.dialogAction.slots.Phone).then(function(prev){
+                        g.previous = prev;
+                     });
+                  });
+               });
                console.log(groups);
+
                $scope.activeCallGroups = groups;
 
             }, function(data) {

@@ -36,7 +36,7 @@ module.exports = class ClientRoutes {
 
       router
          .route('/api/close-call/:id')
-         .post(ClientController.closeCall);
+         .delete(ClientController.closeCall);
 
       router
          .route('/api/call-detail/:id')

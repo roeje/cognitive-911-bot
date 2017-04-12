@@ -103,11 +103,17 @@ callSchema.statics.deleteCall = (id) => {
 
 callSchema.statics.closeCall = (id) => {
     return new Promise((resolve, reject) => {
+        console.log("In DAO");
         if (!_.isString(id))
             return reject(new TypeError('Id is not a valid string.'));
 
         Call
-          .findOneAndUpdate(id, {closed: true})
+          .findOne({'_id': id}, function(err, call) {
+             console.log(call);
+             call.sessionAttributes.closed = true;
+             call.save();
+          })
+         //  .findOneAndUpdate({_id: id}, {$set:{'sessionAttributes.closed': true}})
           .exec((err, updated) => {
               err ? reject(err)
                   : resolve();

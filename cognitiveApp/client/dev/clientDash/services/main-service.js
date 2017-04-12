@@ -79,7 +79,8 @@
 
             closeCallDetail : function(id) {
                var deferred = $q.defer();
-               $http.get('/api/close-call/' + id).success(function(data) {
+               $http.delete('/api/close-call/' + id).success(function(data) {
+                  console.log('Call Closed');
                   console.log(data);
                   deferred.resolve(data);
                });
