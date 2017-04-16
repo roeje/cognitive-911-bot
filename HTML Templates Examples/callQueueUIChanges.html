@@ -1,0 +1,321 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		var app = angular.module("callerList", []);
+		
+		app.controller("callers", function($scope, $window) {
+		});
+	</script>
+		$( document ).ready(function() {
+				$(".border-colored").addClass("closed");
+				$(".priority-block").addClass("closed-background");
+				$( document ).tooltip();
+		});
+		
+		
+	<script>
+	</script>
+	<style>
+
+		body {
+			background-color: #1D1C19;
+			padding-top:2em;
+			padding-bottom:2em;
+		}
+		
+		.header-img {
+			object-fit: fill;
+			width: 5rem;
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+			padding-right:1rem;
+		}
+		
+		.app-panel {
+			margin-left: 4%;
+			margin-right: 4%;
+		}
+		
+		.row , .groupheader {
+			margin-bottom:.5em;
+		}
+		
+		.no-margin {
+			margin:0;
+		}
+		
+		.no-border {
+			border: none;
+		}
+		
+		.border-colored {
+			border-width: 2px;
+			border-radius: 0 0 .25rem .25rem;
+		}
+		
+		.margin {
+			margin-bottom:.5em;
+		}
+		
+		.no-bottom-margin {
+			margin-bottom:0;
+		}
+		.no-padding {
+			padding:0;
+		}
+		
+		.no-right-padding {
+			padding-right: 0;
+		}
+		
+		.no-left-padding {
+			padding-left: 0;
+		}
+		
+		.border-colored .card-block {
+			padding:.5rem;
+		}
+		
+		.small-card-block {
+			padding:.5rem .5rem 0 .5rem;
+		}
+		
+		.small-padding {
+			padding:.5rem;
+		}
+		
+		.small-card-block > h5 {
+			margin-bottom:.5rem;
+		}
+		
+		.width100 {
+			width:100%;
+		}
+
+		.priority1 {
+			border-color: #FF0000; 
+		}
+		
+		.priority1-background {
+			background-color: #FF0000; 
+			border-color: #FF0000; 
+		}
+		
+		.priority1-text {
+			color: #FF0000;
+		}
+		
+		.priority2 {
+			border-color:#ff4d4d ;  
+		}
+		
+		.priority2-background {
+			background-color: #ff4d4d; 
+			border-color:#ff4d4d; 
+		}
+		.priority2-text {
+			color:#ff4d4d ;  
+		}
+		
+		.priority3 {
+			border-color: #FFFF00; 
+		}
+		
+		.priority3-background {
+			background-color: #FFFF00; 
+			border-color:#FFFF00; 
+		}
+		
+		.priority3-text {
+			color: #FFFF00; 
+		}
+		
+		.priority4 {
+			border-color: #ffff80; 
+		}
+		
+		.priority4-background {
+			background-color: #ffff80; 
+			border-color:#ffff80; 
+		}
+		
+		.priority4-text {
+			color: #ffff80; 
+		}
+		
+		.priority5 {
+			border-color: #00ff00; 
+		}
+		
+		.priority5-background {
+			background-color: #00ff00; 
+			border-color:#00ff00; 
+		}
+		
+		.priority5-text {
+			color: #00ff00; 
+		}
+		
+		.priority6 {
+			border-color: #80ff80; 
+		}
+		
+		.priority6-background {
+			background-color: #80ff80; 
+			border-color:#80ff80; 
+		}
+		
+		.priority6-text {
+			color: #80ff80; 
+		}
+		
+		.closed {
+			border-color: #808080; /* Gray */
+		}
+		
+		.closed-background {
+			background-color: #808080; 
+			border-color:#808080; 
+		}
+		
+		.priority-block {
+			border-radius: .25rem .25rem 0 0;
+		}
+		
+		.arrow-lt {
+				max-width: 2rem;
+				
+		}
+		
+		.arrow-lt > img {
+			opacity: .5;
+				margin-top: auto;
+				margin-bottom: auto;
+		}
+		
+		@media (min-width: 576px) {
+			.border-colored {
+				border-radius: 0 .25rem .25rem 0;
+			}
+			
+			.priority-block {
+				border-radius: .25rem 0 0 .25rem;
+				max-width: 2rem;
+			}
+			
+			.tile {
+				width:50%;
+			}
+			
+			.center-queue-card {
+				border-right:0;
+			}
+		}
+	</style>
+	
+<div class="container-fluid">
+  <div class="app-panel transition">
+
+    <ng-include src="'clientDash/templates/navbar.html'"></ng-include>
+
+		<div class="row">
+			<div class="col-12">
+				<div class="card bg-primary">
+					<div class="card-block">
+						<h4 class="display-4 text-center text-white">911 Caller Queue</h4>
+					</div>						
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-12">
+				<div class="card no-border">
+					<nav class="nav nav-pills">
+						<div class="row no-margin col-12 no-padding">
+							<li class="nav-item col-12 col-lg-6 no-padding text-lg-center">
+								<a class="nav-link active" href="#">911 Call Queue  <span id='callqueuebadge' class="badge badge-default">2</span></a>
+							</li>
+							<li class="nav-item col-12 col-lg-6 no-padding text-lg-center">
+								<a class="nav-link" href="#">Closed Calls</a>
+							</li>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+		
+		<div class="groupheader card">
+			<div class="card-header text-center small-padding">
+				<h5 class='no-bottom-margin'> <span class='emergencygroup'>Car Accident</span> - Related Incidents  <span id='relatedincidentsbadge' class="badge badge-default">2</span></h5>
+			</div>
+			<div class="card-block small-card-block">
+				<!-- Insert the <div class="queue-row row"> of each incident in the group -->
+		
+			</div>
+		</div>
+		
+		<!-- This element is the repeating element of the queue items -->
+		<div class="queue-row row">
+			<div class="col-12">
+				<div class="col-12">
+					<div class="row card-group no-bottom-margin">
+						<div class="col-12 card priority-block border-colored rounded-top priority1 priority1-background">
+							<p></p>
+						</div>
+						<div class="col-12 col-sm-12 card border-colored priority1 center-queue-card">
+							<div class="row">
+								<div class="col-12 col-sm-6 col-md-3">
+									<h5 class="card-title">Emergency</h5>
+									<p class="card-text">
+										 {{callDetail.slots.Emergency}}
+									</p>
+								</div>
+								<div class="col-12 col-sm-6  col-md-3">
+									<h5 class="card-title">Call Duration</h5>
+									<p class="card-text">
+										{{caller.dialogAction.endTime}}-{{caller.dialogAction.startTime}}
+									</p>
+								</div>
+								<div class="col-12 col-sm-6  col-md-3">
+									<h5 class="card-title">Caller Role</h5>
+									<p class="card-text">
+										{{caller.dialogAction.callerRole}}
+									</p>
+								</div>
+								<div class="col-12 col-sm-6  col-md-3 d-flex flex-column flex-sm-row">
+										<div class="tile pr-3">
+											<h5 class="card-title">Previous</h5>
+											<p class="card-text">
+												3
+											</p>
+										</div>
+										<div class="tile">
+											<h5 class="card-title">Incident</h5>
+											<p class="card-text">
+												0
+											</p>
+										</div>
+								</div>
+								
+							</div>
+							
+						</div>
+						<div class="hidden-xs-down card arrow-lt border-colored priority1">
+							<img src='./back-arrow-lt.png' class=''/>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	
+	</div>
+</div>
